@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<entradas>
+  <entrada>
+    <idOrigen>1</idOrigen>
+    <idUnidadNegocio>1</idUnidadNegocio>
+    <noEmpleado>780267</noEmpleado>
+    <noEmpleadoAlterno>570260</noEmpleadoAlterno>
+  </entrada>
+  <entrada>
+    <idOrigen>2</idOrigen>
+    <idUnidadNegocio>4</idUnidadNegocio>
+    <noEmpleado>942932</noEmpleado>
+    <noEmpleadoAlterno>552855</noEmpleadoAlterno>
+  </entrada>
+  <entrada>
+    <idOrigen>1</idOrigen>
+    <idUnidadNegocio>5</idUnidadNegocio>
+    <noEmpleado>314701</noEmpleado>
+    <noEmpleadoAlterno>551521</noEmpleadoAlterno>
+  </entrada>
+</entradas>

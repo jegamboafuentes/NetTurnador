@@ -1,0 +1,127 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.ServiceModel.Web;
+using System.Web;
+
+using Baz.Caja.Commons.Collection;
+using Baz.Caja.Commons.Model;
+using Baz.Caja.Servicios;
+using Baz.Caja.Turnador.Model;
+using Baz.Caja.Turnador.Util;
+using Baz.Caja.Turnador.Dao;
+
+namespace Baz.Caja.Turnador.Service.Ioc
+{
+    public class CjCRTurnosServiceIoC : CjCRITurnosService
+    {
+        public CjCRTurnosDao TurnosDao { get; set; }
+        public CjCRTurnosService TurnosService { get; set; }
+        public CjCRCualidadList util = new CjCRCualidadList();
+        public CjCRCredential credential = new CjCRCredential();
+
+        public CjCRTurno GenerarTurno(CjCRTurno turno)
+        {
+            return TurnosService.GenerarTurno(turno,
+                TurnosService.GetAuthorization(true));
+        }
+
+        public CjCRTurno GetTurno(String fecha,String idUnidadNegocio, String idTurno)
+        {
+            
+            fecha = util.ValidarFecha(fecha);
+            return TurnosService.GetTurno(fecha,idUnidadNegocio, idTurno,
+                TurnosService.GetAuthorization(true));
+        }
+
+        public CjCRTurno GetTurnoAsignado(String fecha, String idUnidadNegocio, String noEmpleado)
+        {
+            fecha = util.ValidarFecha(fecha);
+            return TurnosService.GetTurnoAsignado(fecha, idUnidadNegocio, noEmpleado,
+                TurnosService.GetDefaultAuthorization(true));
+        }
+
+        public CjCRDictionary<Int32, List<CjCRTurno>> GetTurnosAsignados(String fecha)
+        {
+            fecha = util.ValidarFecha(fecha);
+            return TurnosService.GetTurnosAsignados(fecha,
+                TurnosService.GetDefaultAuthorization(true));
+        }
+
+        /// Servicio de turnos en atención.
+        public CjCRDictionary<Int32, List<CjCRTurno>> GetTurnosAtendiendo(String fecha)
+        {
+            fecha = util.ValidarFecha(fecha);
+            return TurnosService.GetTurnosAtendiendo(fecha,
+                TurnosService.GetDefaultAuthorization(true));
+        }
+
+        public CjCRDictionary<Int32, List<CjCRTurno>> GetTurnosHistorial(String fecha)
+        {
+            fecha = util.ValidarFecha(fecha);
+            return TurnosService.GetTurnosHistorial(fecha,
+                TurnosService.GetDefaultAuthorization(true));
+        }
+
+                
+        public CjCRSummary CompletarTurnos()
+        {
+            return TurnosService.CompletarTurnos(
+                TurnosService.GetAuthorization(true));
+        }
+
+        public CjCRSummary PosponerTurno(CjCRTurno turno)
+        {
+            string fecha = util.ValidarFecha(turno.Fecha.ToString()).ToString();
+            turno.Fecha = Int32.Parse(fecha);   
+            return TurnosService.PosponerTurno(turno,
+                TurnosService.GetAuthorization(true));
+        }
+
+        public CjCRSummary CancelarTurno(CjCRTurno turno)
+        {
+            string fecha = util.ValidarFecha(turno.Fecha.ToString()).ToString();
+            turno.Fecha = Int32.Parse(fecha);
+            return TurnosService.CancelarTurno(turno,
+                TurnosService.GetAuthorization(true));
+        }
+
+        public CjCRSummary AtenderTurno(String noEmpleado, CjCRTurno turno)
+        {
+            return TurnosService.AtenderTurno(noEmpleado, turno,
+                TurnosService.GetAuthorization(true));
+        }
+
+        public CjCRSummaryTurno AtenderTurnoVirtual(String idUnidadNegocio, String noEmpleado)
+        {
+            return TurnosService.AtenderTurnoVirtual(idUnidadNegocio, noEmpleado,
+                TurnosService.GetAuthorization(true));
+        }
+
+        public CjCRSummary ApropiarTurno(String noEmpleado, CjCRTurno turno)
+        {
+            string fecha = util.ValidarFecha(turno.Fecha.ToString()).ToString();
+            turno.Fecha = Int32.Parse(fecha);
+            return TurnosService.ApropiarTurno(noEmpleado, turno,
+                TurnosService.GetAuthorization(true));
+        }
+
+        public CjCRSummary FinalizarTurno(String noEmpleado, CjCRTurno turno)
+        {
+            string fecha = util.ValidarFecha(turno.Fecha.ToString()).ToString();
+            turno.Fecha = Int32.Parse(fecha);
+            return TurnosService.FinalizarTurno(noEmpleado, turno,
+                TurnosService.GetAuthorization(true));
+        }
+
+        public CjCRTurno GetTurnoEmpleado(String fecha, String noEmpleado)
+        {
+
+            fecha = util.ValidarFecha(fecha);
+            return TurnosService.GetTurnoEmpleado(fecha, noEmpleado,
+                TurnosService.GetAuthorization(true));
+        }
+    
+    }
+}

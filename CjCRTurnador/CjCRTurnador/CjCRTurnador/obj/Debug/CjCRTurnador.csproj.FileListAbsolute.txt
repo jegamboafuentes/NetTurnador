@@ -1,0 +1,25 @@
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Turnador.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Turnador.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Commons.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Common.Logging.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Newtonsoft.Json.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Aop.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Core.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Data.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Commons.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Newtonsoft.Json.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Newtonsoft.Json.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Aop.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Aop.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Core.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Core.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Data.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Data.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\obj\Debug\ResolveAssemblyReference.cache
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\obj\Debug\Baz.Caja.Turnador.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\obj\Debug\Baz.Caja.Turnador.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Turnador.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Turnador.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\obj\Debug\ResolveAssemblyReference.cache
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\obj\Debug\Baz.Caja.Turnador.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\obj\Debug\Baz.Caja.Turnador.pdb

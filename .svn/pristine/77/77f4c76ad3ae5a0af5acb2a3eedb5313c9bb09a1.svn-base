@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+using Baz.Caja.Turnador.Util;
+
+namespace Baz.Caja.Turnador.Model
+{
+    [DataContract]
+    public class CjCREmpleadoPool
+    {
+        [DataMember]
+        public String NoEmpleado { get; set; }
+
+        [DataMember]
+        public String Nombre { get; set; }
+
+        [DataMember]
+        public int Estado { get; set; }
+
+        [DataMember]
+        public String Foto { get; set;}
+
+        [DataMember]
+        public CjCRCualidadList Cualidades { get; set; }
+
+        public CjCREmpleadoPool()
+        {
+            Cualidades = new CjCRCualidadList();
+        }
+    }
+}

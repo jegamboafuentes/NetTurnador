@@ -1,0 +1,26 @@
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Turnador.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Turnador.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Common.Logging.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Aop.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Core.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Data.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Aop.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Aop.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Core.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Core.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Data.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Spring.Data.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\obj\Release\ResolveAssemblyReference.cache
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\obj\Release\Baz.Caja.Turnador.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\obj\Release\Baz.Caja.Turnador.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Turnador.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Turnador.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\bin\Spring.Aop.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\bin\Spring.Aop.xml
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\bin\Spring.Core.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\bin\Spring.Core.xml
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\bin\Spring.Data.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\bin\Spring.Data.xml
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\obj\Release\ResolveAssemblyReference.cache
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\obj\Release\Baz.Caja.Turnador.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnador\obj\Release\Baz.Caja.Turnador.pdb

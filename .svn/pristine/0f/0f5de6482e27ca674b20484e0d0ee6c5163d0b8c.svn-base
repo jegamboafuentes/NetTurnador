@@ -1,0 +1,8 @@
+﻿
+var MESSAGES_DATA = {
+    "mensajeAtencion1": "Por favor, pase a", 
+    "atencion": "Atendiendo",
+    "mensajeAtencion2": "Por favor, pase a la zona de",
+    "turnoSolicitado": "Turno solicitado - negocio: {descripcion}, turno: {idTurno}",
+    "turnoNoAsignado": "Turno no asignado - negocio: {descripcion}, turno: {idTurno}"
+};

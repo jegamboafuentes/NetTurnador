@@ -1,0 +1,8 @@
+﻿
+production.user=BANCO
+production.password=AZTECA
+
+development.user=SOPTEC
+development.password=SOPTEC
+
+connection.string=Data Source={0};Database=ADN;Trusted_Connection=False

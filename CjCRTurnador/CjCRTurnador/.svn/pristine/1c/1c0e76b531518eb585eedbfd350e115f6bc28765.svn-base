@@ -1,0 +1,361 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+using System.Linq;
+using System.Web;
+
+using Common.Logging;
+
+using Baz.Caja.Commons.Dao;
+using Baz.Caja.Commons.Model;
+using Baz.Caja.Commons.Util;
+using Baz.Caja.Turnador.Dao.Mapper;
+using Baz.Caja.Turnador.Model;
+using Baz.Caja.Turnador.Support;
+
+namespace Baz.Caja.Turnador.Dao
+{
+    public class CjCRTurnosDao : CjCRDaoBase
+    {
+        private static ILog Log = LogManager.GetCurrentClassLogger();
+
+        public const int FILA_VIRTUAL = 1;
+
+        public CjCRTurnoMapper TurnoMapper { get; set; }
+
+        public int CompletarTurnos(CjCRCredential credential)
+        {
+            int resultCode = CjCRTurnadorStatus.OPERATION_FAIL;
+
+            try
+            {
+                resultCode = CompletarTurnosExecute(credential);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CjCRPropertyUtils.GetFormat("sentence.execution.error", ex.Message));
+            }
+
+            return resultCode;
+        }
+
+        public int CaducarTurnos(int idUnidadNegocio, CjCRCredential credential)
+        {
+            int resultCode = CjCRTurnadorStatus.OPERATION_FAIL;
+
+            try
+            {
+                resultCode = CaducarTurnosExecute(idUnidadNegocio, credential);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CjCRPropertyUtils.GetFormat("sentence.execution.error", ex.Message));
+            }
+
+            return resultCode;
+        }
+
+        public CjCRTurno GenerarTurno(CjCRTurno turno, CjCRCredential credential)
+        {
+            CjCRTurno turnoGenerado = default(CjCRTurno);
+
+            try
+            {
+                turnoGenerado = GenerarTurnoExecute(turno, credential);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CjCRPropertyUtils.GetFormat("sentence.execution.error", ex.Message));
+            }
+
+            return turnoGenerado;
+        }
+
+        public int SetEstado(CjCRTurno turno, CjCRCredential credential)
+        {
+            int resultCode = CjCRTurnadorStatus.OPERATION_FAIL;
+
+            try
+            {
+                resultCode = SetEstadoExecute(turno, credential);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CjCRPropertyUtils.GetFormat("sentence.execution.error", ex.Message));
+            }
+
+            return resultCode;
+        }
+
+        public CjCRTurno GetTurno(CjCRTurno turno, CjCRCredential credential)
+        {
+            CjCRTurno turnoGet = default(CjCRTurno);
+
+            try
+            {
+                turnoGet = GetTurnoExecute(turno, credential);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CjCRPropertyUtils.GetFormat("sentence.execution.error", ex.Message));
+            }
+
+            return turnoGet;
+        }
+
+        public List<CjCRTurno> GetTurnos(int fecha, int idUnidadNegocio, int estadoTurno,
+            CjCRCredential credential)
+        {
+            List<CjCRTurno> turnos = new List<CjCRTurno>();
+
+            try
+            {
+                turnos = GetTurnosExecute(fecha, idUnidadNegocio, estadoTurno, credential);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CjCRPropertyUtils.GetFormat("sentence.execution.error", ex.Message));
+            }
+
+            return turnos;
+        }
+
+
+        
+        public CjCRTurno AtenderVirtual(int idUnidadNegocio, String noEmpleado, CjCRCredential credential)
+        {
+            CjCRTurno turnoVirtual = default(CjCRTurno);
+
+            try
+            {
+                turnoVirtual = AtenderVirtualExecute(idUnidadNegocio, noEmpleado, credential);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CjCRPropertyUtils.GetFormat("sentence.execution.error", ex.Message));
+            }
+
+            return turnoVirtual;
+        }
+
+        public int ApropiarTurno(String noEmpleado, CjCRTurno turno, CjCRCredential credential)
+        {
+            int resultCode = CjCRTurnadorStatus.OPERATION_FAIL;
+
+            try
+            {
+                resultCode = ApropiarTurnoExecute(noEmpleado, turno, credential);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CjCRPropertyUtils.GetFormat("sentence.execution.error", ex.Message));
+            }
+
+            return resultCode;
+        }
+
+        private int CompletarTurnosExecute(CjCRCredential credential)
+        {
+            Autenticate(credential);
+
+            return AdoTemplate.Execute<Int32>(delegate(DbCommand command)
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLUTRAsigna";
+
+                command.ExecuteNonQuery();
+
+                return CjCRTurnadorStatus.OPERATION_COMPLETE;
+            });
+        }
+
+        private int CaducarTurnosExecute(int idUnidadNegocio, CjCRCredential credential)
+        {
+            Autenticate(credential);
+
+            return AdoTemplate.Execute<Int32>(delegate(DbCommand command)
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLUTRCaduca";
+
+                CjCRDaoUtils.AddNullParam(command, "@piUnidadNegocio", idUnidadNegocio, CjCRDaoUtils.INT_NULL);
+
+                command.ExecuteNonQuery();
+
+                return CjCRTurnadorStatus.OPERATION_COMPLETE;
+            });
+        }
+
+        private CjCRTurno GenerarTurnoExecute(CjCRTurno turno, CjCRCredential credential)
+        {
+            Autenticate(credential);
+
+            return AdoTemplate.Execute<CjCRTurno>(delegate(DbCommand command)
+            {
+                CjCRTurno turnoGenerado = new CjCRTurno();
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLITRTurno";
+
+                CjCRDaoUtils.AddParamNotNull(command, "@piOrigenTurno", turno.IdOrigen);
+                CjCRDaoUtils.AddParamNotNull(command, "@piUndNegocio", turno.IdUnidadNegocio);
+                CjCRDaoUtils.AddParamNotNull(command, "@piFilaId", FILA_VIRTUAL);
+                CjCRDaoUtils.AddParamNotNull(command, "@piSeguimiento", turno.TurnoSeguimiento);
+                CjCRDaoUtils.AddParamNotNull(command, "@pcUser", credential.User);
+
+                CjCRDaoUtils.AddOutputParam(command, "@piTurno", CjCRDaoUtils.INT_SIZE);
+                CjCRDaoUtils.AddOutputParam(command, "@piFecha", CjCRDaoUtils.INT_SIZE);
+
+                command.ExecuteNonQuery();
+
+                turnoGenerado.IdTurno = CjCRDaoUtils.GetInt32(command, "@piTurno", -1);
+                turnoGenerado.Fecha = CjCRDaoUtils.GetInt32(command, "@piFecha", -1);
+
+                turnoGenerado.IdOrigen = turno.IdOrigen;
+                turnoGenerado.IdUnidadNegocio = turno.IdUnidadNegocio;
+                turnoGenerado.TurnoSeguimiento = turno.TurnoSeguimiento;
+
+                return turnoGenerado;
+            });
+        }
+
+        private int SetEstadoExecute(CjCRTurno turno, CjCRCredential credential)
+        {
+            Autenticate(credential);
+
+            return AdoTemplate.Execute<Int32>(delegate(DbCommand command)
+            {
+                int resultCode = CjCRTurnadorStatus.OPERATION_FAIL;
+                DbDataReader reader;
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLUTRHistorico";
+
+                CjCRDaoUtils.AddParamNotNull(command, "@piFecha", turno.Fecha);
+                CjCRDaoUtils.AddParamNotNull(command, "@piTurno", turno.IdTurno);
+                CjCRDaoUtils.AddParamNotNull(command, "@piUnidadNegocio", turno.IdUnidadNegocio);
+                CjCRDaoUtils.AddParamNotNull(command, "@piEstatusTurno", turno.Estado);
+                CjCRDaoUtils.AddParamNotNull(command, "@pcUser", credential.User);
+
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    resultCode = reader.GetInt32(0);
+                }
+
+                return resultCode;
+            });
+        }
+
+        private CjCRTurno GetTurnoExecute(CjCRTurno turno, CjCRCredential credential)
+        {
+            Autenticate(credential);
+
+            return AdoTemplate.Execute<CjCRTurno>(delegate(DbCommand command)
+            {
+                CjCRTurno turnoGet = default(CjCRTurno);
+                DbDataReader reader;
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLSTRTurno";
+                //-------------------------------------------------------------------->
+                CjCRDaoUtils.AddParamNotNull(command, "@piFecha", turno.Fecha);
+                CjCRDaoUtils.AddParamNotNull(command, "@piTurno", turno.IdTurno);
+                CjCRDaoUtils.AddParamNotNull(command, "@piUndNegocio", turno.IdUnidadNegocio);
+
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    turnoGet = TurnoMapper.Get(reader, CjCRTurnoMapper.BASIC_MODEL);
+                }
+
+                return turnoGet;
+            });
+        }
+
+        private List<CjCRTurno> GetTurnosExecute(int fecha, int idUnidadNegocio, int estadoTurno,
+            CjCRCredential credential)
+        {
+            Autenticate(credential);
+
+            return AdoTemplate.Execute<List<CjCRTurno>>(delegate(DbCommand command)
+            {
+                List<CjCRTurno> turnos = new List<CjCRTurno>();
+                CjCRTurno turno;
+                DbDataReader reader;
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLSTRTurnos";
+
+                CjCRDaoUtils.AddNullParam(command, "@piFecha", fecha, CjCRDaoUtils.INT_NULL);
+                CjCRDaoUtils.AddNullParam(command, "@piUndNeg", idUnidadNegocio, CjCRDaoUtils.INT_NULL);
+                CjCRDaoUtils.AddNullParam(command, "@piEstatusTurno", estadoTurno, CjCRDaoUtils.INT_NULL);
+
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    turno = TurnoMapper.Get(reader, CjCRTurnoMapper.BASIC_MODEL);
+
+                    turnos.Add(turno);
+                }
+
+                return turnos;
+            });
+        }
+
+
+        
+        private CjCRTurno AtenderVirtualExecute(int idUnidadNegocio, String noEmpleado, CjCRCredential credential)
+        {
+            Autenticate(credential);
+
+            return AdoTemplate.Execute<CjCRTurno>(delegate(DbCommand command)
+            {
+                CjCRTurno turno = new CjCRTurno();
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLITRAsignaVirtual";
+
+                CjCRDaoUtils.AddParamNotNull(command, "@pcEmpleado", noEmpleado);
+                CjCRDaoUtils.AddParamNotNull(command, "@piUnidadNegocio", idUnidadNegocio);
+                
+                CjCRDaoUtils.AddOutputParam(command, "@piTurno", CjCRDaoUtils.INT_SIZE);
+                CjCRDaoUtils.AddOutputParam(command, "@piFecha", CjCRDaoUtils.INT_SIZE);
+                CjCRDaoUtils.AddOutputParam(command, "@piStatus", CjCRDaoUtils.INT_SIZE);
+
+                command.ExecuteNonQuery();
+
+                turno.IdUnidadNegocio = idUnidadNegocio;
+                turno.IdTurno = CjCRDaoUtils.GetInt32(command, "@piTurno", -1);
+                turno.Fecha = CjCRDaoUtils.GetInt32(command, "@piFecha", -1);
+                turno.Estado = CjCRDaoUtils.GetInt32(command, "@piStatus", -1);
+
+                return turno;
+            });
+        }
+
+        private int ApropiarTurnoExecute(String noEmpleado, CjCRTurno turno, CjCRCredential credential)
+        {
+            Autenticate(credential);
+
+            return AdoTemplate.Execute<Int32>(delegate(DbCommand command)
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLUTRApropiar";
+
+                CjCRDaoUtils.AddParamNotNull(command, "@piFecha", turno.Fecha);
+                CjCRDaoUtils.AddParamNotNull(command, "@piTurno", turno.IdTurno);
+                CjCRDaoUtils.AddParamNotNull(command, "@piUnidadNegocio", turno.IdUnidadNegocio);
+                CjCRDaoUtils.AddParamNotNull(command, "@pcEmpleado", noEmpleado);
+
+                command.ExecuteNonQuery();
+
+                return CjCRTurnadorStatus.OPERATION_COMPLETE;
+            });
+        }
+    }
+}

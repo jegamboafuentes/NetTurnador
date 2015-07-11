@@ -1,0 +1,6 @@
+﻿
+production.user=BANCO
+production.password=AZTECA
+
+development.user=SOPTEC
+development.password=SOPTEC

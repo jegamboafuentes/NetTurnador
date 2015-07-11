@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="6e66f071-df04-4403-97ba-805961c1be1d" name="B859390@WXP_FGAMEZ 2013-12-03 12:28:33" runUser="BANCOAZTECA\B859390" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="de653c0a-5f0b-4dcc-aa03-7cc115229a2f">
+    <Description>Esta es la configuración de pruebas predeterminada para una ejecución de pruebas local.</Description>
+    <Deployment userDeploymentRoot="C:\gfb\workspaces\networkspace\CjCRTurnador\TestResults" useDefaultDeploymentRoot="false" enabled="false" runDeploymentRoot="B859390_WXP_FGAMEZ 2013-12-03 12_28_33">
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Spring.Data.dll" />
+      <DeploymentItem filename="C:\gfb\workspaces\networkspace\CjCRBAZCommons\CjCRBAZCommons\bin\Debug\Baz.Caja.Commons.dll" />
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Spring.Aop.dll" />
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Spring.Core.dll" />
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Common.Logging.dll" />
+      <DeploymentItem filename="C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Turnador.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-12-03T12:28:33.1210769-06:00" queuing="2013-12-03T12:28:34.4627113-06:00" start="2013-12-03T12:28:34.6343157-06:00" finish="2013-12-03T12:29:28.3004197-06:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="4" executed="4" passed="2" error="0" failed="2" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <DebugTrace>no configuration section &lt;common/logging&gt; found - suppressing logging output
+</DebugTrace>
+    </Output>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="AtencionTurnoTest" storage="c:\gfb\workspaces\networkspace\cjcrturnador\cjcrturnadortest\bin\debug\baz.caja.turnador.test.dll" id="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d">
+      <Execution id="730d1b00-0f53-4b0d-8b79-73679ed04bb8" />
+      <TestMethod codeBase="C:/gfb/workspaces/networkspace/CjCRTurnador/CjCRTurnadorTest/bin/Debug/Baz.Caja.Turnador.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest, Baz.Caja.Turnador.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="AtencionTurnoTest" />
+      <DataSource connectionString="|DataDirectory|\resource\datasource\TurnoTest.xml" providerInvariantName="Microsoft.VisualStudio.TestTools.DataSource.XML" tableName="entrada" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Resultados que no están en la lista" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Todos los resultados cargados" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d" executionId="730d1b00-0f53-4b0d-8b79-73679ed04bb8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="730d1b00-0f53-4b0d-8b79-73679ed04bb8" testId="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d" testName="AtencionTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:46.0745788" startTime="2013-12-03T12:28:34.8215205-06:00" endTime="2013-12-03T12:29:26.6466713-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="730d1b00-0f53-4b0d-8b79-73679ed04bb8" resultType="DataDrivenTest">
+      <Counters error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="2" completed="0" inProgress="0" pending="0" />
+      <InnerResults>
+        <UnitTestResult executionId="8abba9b6-0a3c-43a0-bd08-74c3aa8c715c" parentExecutionId="730d1b00-0f53-4b0d-8b79-73679ed04bb8" testId="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d" testName="AtencionTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:15.6707729" startTime="2013-12-03T12:28:39.6264437-06:00" endTime="2013-12-03T12:28:55.3516469-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="730d1b00-0f53-4b0d-8b79-73679ed04bb8" dataRowInfo="0" resultType="DataDrivenDataRow" />
+        <UnitTestResult executionId="970eaab9-2cd2-4084-b5d3-a1b80067918d" parentExecutionId="730d1b00-0f53-4b0d-8b79-73679ed04bb8" testId="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d" testName="AtencionTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:05.2203402" startTime="2013-12-03T12:28:55.3516469-06:00" endTime="2013-12-03T12:29:00.5621805-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="730d1b00-0f53-4b0d-8b79-73679ed04bb8" dataRowInfo="1" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>Error de Assert.AreEqual. Se esperaba &lt;True&gt;, pero es &lt;False&gt;. No se realizó la atención del turno</Message>
+              <StackTrace>   en Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest.AtencionTurnoTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCRTurnosFlowTest.cs:línea 88
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+        <UnitTestResult executionId="3f755bc6-e7fe-4b95-9d83-a56d1e8ee615" parentExecutionId="730d1b00-0f53-4b0d-8b79-73679ed04bb8" testId="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d" testName="AtencionTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:25.1336890" startTime="2013-12-03T12:29:00.5621805-06:00" endTime="2013-12-03T12:29:25.7105873-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="730d1b00-0f53-4b0d-8b79-73679ed04bb8" dataRowInfo="2" resultType="DataDrivenDataRow" />
+      </InnerResults>
+    </UnitTestResult>
+  </Results>
+</TestRun>

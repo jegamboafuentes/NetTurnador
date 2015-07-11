@@ -1,0 +1,255 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+using System.Linq;
+using System.Web;
+
+using Common.Logging;
+
+using Spring.Data;
+using Spring.Data.Common;
+
+using Baz.Caja.Commons.Dao;
+using Baz.Caja.Commons.Model;
+using Baz.Caja.Commons.Util;
+using Baz.Caja.Turnador.Dao.Mapper;
+using Baz.Caja.Turnador.Model;
+using Baz.Caja.Turnador.Support;
+
+namespace Baz.Caja.Turnador.Dao
+{
+    public class CjCRPoolDao : CjCRDaoBase
+    {
+        private static ILog Log = LogManager.GetCurrentClassLogger();
+
+        private const int POOL_BY_EMPLEADO = 1;
+        private const int POOL_BY_UNIDAD_NEGOCIO = 2;
+        private const int POOL_CONJUNTO = 3;
+
+        public CjCREmpleadoPoolMapper EmpleadoPoolMapper { get; set; }
+
+        public int SetEstado(CjCREmpleadoPool empleadoPool, CjCRCredential credential)
+        {
+            int resultCode = CjCRTurnadorStatus.OPERATION_FAIL;
+
+            try
+            {
+                resultCode = SetEstadoExecute(empleadoPool, credential);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CjCRPropertyUtils.GetFormat("sentence.execution.error", ex.Message));
+            }
+
+            return resultCode;
+        }
+
+        public List<CjCREmpleadoPool> GetPool(CjCRCredential credential)
+        {
+            return GetPool(POOL_CONJUNTO, null, 0, credential);
+        }
+
+        public CjCREmpleadoPool GetPoolByEmpleado(String noEmpleado, CjCRCredential credential)
+        {
+            List<CjCREmpleadoPool> pool = GetPool(POOL_BY_EMPLEADO, noEmpleado, 0, credential);
+
+            if (pool.Count > 0)
+            {
+                return pool.First();
+            }
+
+            return default(CjCREmpleadoPool);
+        }
+
+        public List<CjCREmpleadoPool> GetPoolByUnidad(int idUnidadNegocio, CjCRCredential credential)
+        {
+            return GetPool(POOL_BY_UNIDAD_NEGOCIO, null, idUnidadNegocio, credential);
+        }
+
+        private List<CjCREmpleadoPool> GetPool(int opcion, String noEmpleado, int idUnidadNegocio,
+            CjCRCredential credential)
+        {
+            List<CjCREmpleadoPool> pool = new List<CjCREmpleadoPool>();
+
+            try
+            {
+                pool = GetPoolExecute(opcion, noEmpleado, idUnidadNegocio, credential);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CjCRPropertyUtils.GetFormat("sentence.execution.error", ex.Message));
+            }
+
+            return pool;
+        }
+
+        private int SetEstadoExecute(CjCREmpleadoPool empleadoPool, CjCRCredential credential)
+        {
+            Autenticate(credential);
+
+            return AdoTemplate.Execute<Int32>(delegate(DbCommand command)
+            {
+                int resultCode = CjCRTurnadorStatus.OPERATION_FAIL;
+                DbDataReader reader;
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLUTRPoolAtencion";
+
+                CjCRDaoUtils.AddParamNotNull(command, "@pcEmpNo", empleadoPool.NoEmpleado);
+                CjCRDaoUtils.AddParamNotNull(command, "@pcUser", credential.User);
+                CjCRDaoUtils.AddParamNotNull(command, "@piEstatus", empleadoPool.Estado);
+                CjCRDaoUtils.AddParamNotNull(command, "@piCualidad", 
+                    empleadoPool.Cualidades.GetIdCualidad());
+                CjCRDaoUtils.AddParamNotNull(command, "@pcValor", 
+                    empleadoPool.Cualidades.GetValor());
+
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    resultCode = reader.GetInt32(0);
+                }
+
+                return resultCode;
+            });
+        }
+
+        private List<CjCREmpleadoPool> GetPoolExecute(int opcion, String noEmpleado, int idUnidadNegocio,
+            CjCRCredential credential)
+        {
+            Autenticate(credential);
+
+            return AdoTemplate.Execute<List<CjCREmpleadoPool>>(delegate(DbCommand command)
+            {
+                List<CjCREmpleadoPool> pool = new List<CjCREmpleadoPool>();
+                CjCREmpleadoPool empleado;
+                DbDataReader reader;
+                
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLSTRPoolAtencion";
+
+                CjCRDaoUtils.AddParamNotNull(command, "@piOpcion", opcion);
+
+                CjCRDaoUtils.AddNullParam(command, "@pcEmpNo", noEmpleado, null);
+                CjCRDaoUtils.AddNullParam(command, "@piUnidadNeg", idUnidadNegocio, 0);
+
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    empleado = EmpleadoPoolMapper.Get(reader, CjCREmpleadoPoolMapper.BASIC_MODEL);
+
+                    pool.Add(empleado);
+                }
+
+                return pool;
+            });
+        }
+
+
+        public int UpdatePoolExecute(String noEmpleado, int unidadNegocio,
+          CjCRCredential credential)
+        {
+            Autenticate(credential);
+            //string id1 = unidadNegocio;
+            //int id = Convert.ToInt32(id1.ToString());
+
+            return AdoTemplate.Execute<Int32>(delegate(DbCommand command)
+            {
+               
+                int resultCode = CjCRTurnadorStatus.OPERATION_COMPLETE;
+                DbDataReader reader;
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLUTRPoolUnidad";
+
+                //CjCRDaoUtils.AddParamNotNull(command, "@piOpcion", opcion);
+               
+                //CjCRDaoUtils.AddNullParam(command, "@pcEmpNo", noEmpleado, null);
+                //CjCRDaoUtils.AddNullParam(command, "@piUnidadNeg", idUnidadNegocio, 0);
+
+                CjCRDaoUtils.AddParamNotNull(command, "@pcEmpNo", noEmpleado);
+                CjCRDaoUtils.AddParamNotNull(command, "@piUnidadNeg", unidadNegocio);
+                CjCRDaoUtils.AddParamNotNull(command, "@pcUser", credential.User);
+
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    resultCode = reader.GetInt32(0);
+
+                  
+                }
+
+                return resultCode;
+            });
+        }
+
+        public int UnidadEmpleado(String noEmpleado, CjCRCredential credential)
+        {
+            Autenticate(credential);
+            return AdoTemplate.Execute<Int32>(delegate(DbCommand command)
+            {
+
+                int resultCode = CjCRTurnadorStatus.OPERATION_COMPLETE;
+                DbDataReader reader;
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCSNegocioEmpleado";
+
+                CjCRDaoUtils.AddParamNotNull(command, "@pcEmpleado", noEmpleado);
+
+                try
+                {
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        resultCode = Convert.ToInt32(reader.GetByte(0));
+                    }
+
+                    return resultCode;
+                }
+                catch (Exception)
+                {
+                    return CjCRTurnadorStatus.OPERATION_FAIL ;
+                }
+            });
+        }
+
+        public int 
+            PuntoAtencion(String noEmpleado, String puntoatencion, CjCRCredential credential)
+        {
+            Autenticate(credential);
+            return AdoTemplate.Execute<Int32>(delegate(DbCommand command)
+            {
+                int resultCode = CjCRTurnadorStatus.OPERATION_COMPLETE;
+                DbDataReader reader;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PACJCCLUTRPuntoAtencion";
+
+                CjCRDaoUtils.AddParamNotNull(command, "@pcEmpNo", noEmpleado);
+                CjCRDaoUtils.AddParamNotNull(command, "@pcPuntoAtencion", puntoatencion);
+
+                try
+                {
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        resultCode = Convert.ToInt32(reader.GetByte(0));
+                    }
+
+                    return resultCode;        
+                }catch(Exception)
+                {
+                    return CjCRTurnadorStatus.EMPLEADO_INEXISTENTE ;
+                }
+
+  
+            });
+        
+
+        }
+                 
+    }
+}

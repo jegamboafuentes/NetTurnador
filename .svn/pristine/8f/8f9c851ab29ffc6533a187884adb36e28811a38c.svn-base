@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.Text;
+using System.Web;
+
+using Baz.Caja.Commons.Collection;
+using Baz.Caja.Commons.Model;
+
+namespace Baz.Caja.Turnador.Service
+{
+    [ServiceContract]
+    public interface CjCRITurnadorService
+    {
+        [OperationContract]
+        [WebInvoke(
+            Method = "PUT",
+            UriTemplate = "turnador/activar/contingencia/",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CjCRSummary ActivarContingencia();
+
+        [OperationContract]
+        [WebInvoke(
+            Method = "PUT",
+            UriTemplate = "turnador/desactivar/contingencia/",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CjCRSummary DesactivarContingencia();
+
+        [OperationContract]
+        [WebGet(
+            UriTemplate = "turnador/plan/contingencia/",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CjCRCajaConfig GetContingencia();
+
+        [OperationContract]
+        [WebGet(
+            UriTemplate = "turnador/display/duracion/",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CjCRCajaConfig GetDisplayDuracion();
+
+        [OperationContract]
+        [WebGet(
+            UriTemplate = "turnador/display/contexto/",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CjCRSummary GetDisplayContexto();
+
+        [OperationContract]
+        [WebGet(
+            UriTemplate = "turnador/turnos/caducidad/",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CjCRCajaConfig GetTurnosCaducidad();
+    }
+}

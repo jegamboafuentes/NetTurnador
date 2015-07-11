@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+using Baz.Caja.Commons.Support;
+
+
+namespace CjCRTurnadorPanel
+{
+    public partial class _Default : System.Web.UI.Page
+    {
+
+        public CjCRObtenerRegistro ObtenerConexion { get; set; }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            ObtenerConexion = new CjCRObtenerRegistro();
+
+
+            this.Context.Items.Add("NOMBRE", ObtenerConexion.GetRegistro("SOFTWARE\\ODBC\\ODBC.INI\\ADN","Server"));
+            this.Context.Items.Add("SERVER_NAME", Request.ServerVariables["SERVER_NAME"]);
+
+        }
+
+       
+    }
+}

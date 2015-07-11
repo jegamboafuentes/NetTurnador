@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.ServiceModel.Web;
+using System.Web;
+
+using Baz.Caja.Commons.Model;
+using Baz.Caja.Servicios;
+using Baz.Caja.Turnador.Model;
+
+namespace Baz.Caja.Turnador.Service.Ioc
+{
+    public class CjCRPoolServiceIoC : CjCRIPoolService
+    {   
+        public CjCRPoolService PoolService { get; set; }
+
+        public CjCRSummary SetDisponible(String noEmpleado)
+        {
+            return PoolService.SetDisponible(noEmpleado,
+                PoolService.GetAuthorization(true));
+        }
+
+        public CjCRSummary SetNoDisponible( String noEmpleado)
+        {
+            return PoolService.SetNoDisponible(noEmpleado,
+                PoolService.GetAuthorization(true));
+        }
+
+
+        public CjCRUnidadEmpleado MuestraUnidad(String noEmpleado)
+        {
+            return PoolService.MuestraUnidad(noEmpleado,
+                PoolService.GetAuthorization(true));
+              
+        }
+
+
+        public CjCRSummary CambiaUnidad(String noEmpleado, String unidadNegocio)
+        {
+            return PoolService.CambiaUnidad(noEmpleado, unidadNegocio,
+                PoolService.GetAuthorization(true));
+        }
+
+        public CjCRSummary ConsultaCapacidad(String noEmpleado)
+        {
+            return PoolService.ConsultaCapacidad(noEmpleado,
+                PoolService.GetAuthorization(true));   
+        }
+
+        public CjCRSummary CambiaPuntoAtencion(String noEmpleado, String puntoatencion)
+        {
+            return PoolService.CambiaPuntoAtencion(noEmpleado, puntoatencion,
+                PoolService.GetAuthorization(true));
+        }
+
+    }
+}

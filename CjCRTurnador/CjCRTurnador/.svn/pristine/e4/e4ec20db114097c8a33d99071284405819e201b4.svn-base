@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CjCRTurnador", "CjCRTurnador\CjCRTurnador.csproj", "{7EED7E10-4B56-48AE-A03C-F2CB093A1DA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CjCRTurnadorTest", "CjCRTurnadorTest\CjCRTurnadorTest.csproj", "{4B899D09-30A9-41BB-A035-4F490182FDA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{15D021D8-052A-4121-BA5D-DE7A5FDAA5DE}"
+	ProjectSection(SolutionItems) = preProject
+		CjCRTurnador.vsmdi = CjCRTurnador.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = CjCRTurnador.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Win32 = Debug|Win32
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7EED7E10-4B56-48AE-A03C-F2CB093A1DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EED7E10-4B56-48AE-A03C-F2CB093A1DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EED7E10-4B56-48AE-A03C-F2CB093A1DA2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7EED7E10-4B56-48AE-A03C-F2CB093A1DA2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7EED7E10-4B56-48AE-A03C-F2CB093A1DA2}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{7EED7E10-4B56-48AE-A03C-F2CB093A1DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EED7E10-4B56-48AE-A03C-F2CB093A1DA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EED7E10-4B56-48AE-A03C-F2CB093A1DA2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7EED7E10-4B56-48AE-A03C-F2CB093A1DA2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7EED7E10-4B56-48AE-A03C-F2CB093A1DA2}.Release|Win32.ActiveCfg = Release|Any CPU
+		{4B899D09-30A9-41BB-A035-4F490182FDA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B899D09-30A9-41BB-A035-4F490182FDA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B899D09-30A9-41BB-A035-4F490182FDA6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4B899D09-30A9-41BB-A035-4F490182FDA6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4B899D09-30A9-41BB-A035-4F490182FDA6}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{4B899D09-30A9-41BB-A035-4F490182FDA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B899D09-30A9-41BB-A035-4F490182FDA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B899D09-30A9-41BB-A035-4F490182FDA6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4B899D09-30A9-41BB-A035-4F490182FDA6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4B899D09-30A9-41BB-A035-4F490182FDA6}.Release|Win32.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

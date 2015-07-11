@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using System.Text;
+using System.Web;
+
+using Baz.Caja.Commons.Model;
+using Baz.Caja.Commons.Service;
+using Baz.Caja.Turnador.Model;
+using Baz.Caja.Turnador.Service;
+using Baz.Caja.Turnador.Service.Ioc;
+
+namespace Baz.Caja.Servicios
+{
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+
+    public class CjCRPoolService : CjCRServiceIoC<CjCRPoolServiceIoC>, CjCRIPoolService
+    {   
+        public CjCRSummary SetDisponible(String noEmpleado)
+        {
+            return Service.SetDisponible(noEmpleado);
+        }
+
+        public CjCRSummary SetNoDisponible(String noEmpleado)
+        {
+            return Service.SetNoDisponible(noEmpleado);
+        }
+
+        public CjCRUnidadEmpleado MuestraUnidad(String noEmpleado)
+        {
+            return Service.MuestraUnidad(noEmpleado);
+        }
+
+        public CjCRSummary CambiaUnidad(String noEmpleado, String unidadNegocio)
+        {
+            return Service.CambiaUnidad(noEmpleado,unidadNegocio);
+        }
+
+        public CjCRSummary ConsultaCapacidad(String noEmpleado)
+        {
+            return Service.ConsultaCapacidad(noEmpleado);
+        }
+
+        public CjCRSummary CambiaPuntoAtencion(String noEmpleado, String puntoatencion)
+        {
+            return Service.CambiaPuntoAtencion(noEmpleado,puntoatencion);
+        }
+    
+    }
+}

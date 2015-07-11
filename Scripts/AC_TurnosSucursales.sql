@@ -1,0 +1,284 @@
+--------------------------------------------------------------------------------------------------
+---Responsable : Roberto Gonzalez Figueroa
+---Fecha : Sep2013
+---Descripcion : Se insertan Parametros de Configuracion para la Aplicacion de Caja Central
+--------------------------------------------------------------------------------------------------
+
+SET NOCOUNT ON 
+BEGIN TRAN
+   -- ******************************************** 
+   -- ******* Carga Catalogo de Origenes de Turnos
+   -- ******************************************** 
+   IF NOT EXISTS(SELECT FIORIGENID FROM TCCJCCTRORIGEN WITH(NOLOCK) WHERE FIORIGENID=1)
+   BEGIN
+      insert into dbo.TCCJCCTRORIGEN (FIORIGENID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values (0,'Sin Origen',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIORIGENID FROM TCCJCCTRORIGEN WITH(NOLOCK) WHERE FIORIGENID=1)
+   BEGIN
+      insert into dbo.TCCJCCTRORIGEN (FIORIGENID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values (1,'Pedestal',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIORIGENID FROM TCCJCCTRORIGEN WITH(NOLOCK) WHERE FIORIGENID=2)
+   BEGIN
+      insert into dbo.TCCJCCTRORIGEN (FIORIGENID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values (2,'iPad Vendedor',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   -- *********************************************
+   -- ******* Carga Catalogo de Unidades de Negocio
+   -- *********************************************
+   IF NOT EXISTS(SELECT FIUNIDADNEGOCIOID FROM TCCJCCTRUNIDADNEGOCIO WITH(NOLOCK) WHERE FIUNIDADNEGOCIOID=1)
+   BEGIN
+      insert into TCCJCCTRUNIDADNEGOCIO (FIUNIDADNEGOCIOID,FCDESCRIPCION,FCRUTAIMAGEN,FISTATUSUNDNEG,FLPRESTAMOS, FCCOLOR, FCZONA, FCPREFIJO, FDFECHAINSERTA,FCUSERINSERTA) 
+	                                values(1,'Credimax','',1,0,'#006241', 'Prestamos de Dinero','CR',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIUNIDADNEGOCIOID FROM TCCJCCTRUNIDADNEGOCIO WITH(NOLOCK) WHERE FIUNIDADNEGOCIOID=2)
+   BEGIN
+      insert into TCCJCCTRUNIDADNEGOCIO (FIUNIDADNEGOCIOID,FCDESCRIPCION,FCRUTAIMAGEN,FISTATUSUNDNEG,FLPRESTAMOS, FCCOLOR, FCZONA, FCPREFIJO, FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(2,'Micronegocio','',1,0,'#521A7F', 'Micronegocio','MN',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIUNIDADNEGOCIOID FROM TCCJCCTRUNIDADNEGOCIO WITH(NOLOCK) WHERE FIUNIDADNEGOCIOID=3)
+   BEGIN
+      insert into TCCJCCTRUNIDADNEGOCIO (FIUNIDADNEGOCIOID,FCDESCRIPCION,FCRUTAIMAGEN,FISTATUSUNDNEG,FLPRESTAMOS, FCCOLOR, FCZONA, FCPREFIJO, FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(3,'Guardadito','',1,0,'#005187', 'Apertura de Cuentas','GU',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIUNIDADNEGOCIOID FROM TCCJCCTRUNIDADNEGOCIO WITH(NOLOCK) WHERE FIUNIDADNEGOCIOID=4)
+   BEGIN
+      insert into TCCJCCTRUNIDADNEGOCIO (FIUNIDADNEGOCIOID,FCDESCRIPCION,FCRUTAIMAGEN,FISTATUSUNDNEG,FLPRESTAMOS,FCCOLOR,FCZONA,FCPREFIJO,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(4,'Telefonía','',1,0,'#FAD028', 'Unefon, Iusacell','TE',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIUNIDADNEGOCIOID FROM TCCJCCTRUNIDADNEGOCIO WITH(NOLOCK) WHERE FIUNIDADNEGOCIOID=5)
+   BEGIN
+      insert into TCCJCCTRUNIDADNEGOCIO (FIUNIDADNEGOCIOID,FCDESCRIPCION,FCRUTAIMAGEN,FISTATUSUNDNEG,FLPRESTAMOS,FCCOLOR,FCZONA,FCPREFIJO,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(5,'Italika','',1,0,'#909090', 'Italika','IT',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIUNIDADNEGOCIOID FROM TCCJCCTRUNIDADNEGOCIO WITH(NOLOCK) WHERE FIUNIDADNEGOCIOID=6)
+   BEGIN
+      insert into TCCJCCTRUNIDADNEGOCIO (FIUNIDADNEGOCIOID,FCDESCRIPCION,FCRUTAIMAGEN,FISTATUSUNDNEG,FLPRESTAMOS,FCCOLOR,FCZONA,FCPREFIJO,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(6,'Elektra','',1,0,'#D40028', 'Mercancia','EK',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIUNIDADNEGOCIOID FROM TCCJCCTRUNIDADNEGOCIO WITH(NOLOCK) WHERE FIUNIDADNEGOCIOID=7)
+   BEGIN
+      insert into TCCJCCTRUNIDADNEGOCIO (FIUNIDADNEGOCIOID,FCDESCRIPCION,FCRUTAIMAGEN,FISTATUSUNDNEG,FLPRESTAMOS,FCCOLOR,FCZONA,FCPREFIJO,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(7,'Banco Azteca','',1,0,'#006241', 'Cajas','BA',getdate(),'scc');
+   END
+
+   -- ***********************************
+   -- ******* Carga Catalogo de Tipo Fila
+   -- ***********************************
+   IF NOT EXISTS(SELECT FITIPOFILAID FROM TCCJCCTRTIPOFILA WITH(NOLOCK) WHERE FITIPOFILAID=1)
+   BEGIN
+      insert into TCCJCCTRTIPOFILA (FITIPOFILAID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values (1,'Virtual',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FITIPOFILAID FROM TCCJCCTRTIPOFILA WITH(NOLOCK) WHERE FITIPOFILAID=2)
+   BEGIN
+      insert into TCCJCCTRTIPOFILA (FITIPOFILAID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values (2,'F’sica',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   -- ******************************
+   -- ******* Carga Catalogo de Fila
+   -- ******************************
+   IF NOT EXISTS(SELECT FIFILAID FROM TCCJCCTRFILA WITH(NOLOCK) WHERE FIFILAID = 1 AND FIUNIDADNEGOCIOID = 1)
+   BEGIN
+      insert into TCCJCCTRFILA (FIFILAID,FIUNIDADNEGOCIOID,FISTATUSFILA,FITIPOFILAID,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    VALUES (1,1,1,1,GETDATE(),'scc')
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIFILAID FROM TCCJCCTRFILA WITH(NOLOCK) WHERE FIFILAID = 1 AND FIUNIDADNEGOCIOID = 2)
+   BEGIN
+      insert into TCCJCCTRFILA (FIFILAID,FIUNIDADNEGOCIOID,FISTATUSFILA,FITIPOFILAID,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    VALUES (1,2,1,1,GETDATE(),'scc')
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIFILAID FROM TCCJCCTRFILA WITH(NOLOCK) WHERE FIFILAID = 1 AND FIUNIDADNEGOCIOID = 3)
+   BEGIN
+      INSERT INTO TCCJCCTRFILA (FIFILAID,FIUNIDADNEGOCIOID,FISTATUSFILA,FITIPOFILAID,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    VALUES (1,3,1,1,GETDATE(),'scc')
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIFILAID FROM TCCJCCTRFILA WITH(NOLOCK) WHERE FIFILAID = 1 AND FIUNIDADNEGOCIOID = 4)
+   BEGIN
+      INSERT INTO TCCJCCTRFILA (FIFILAID,FIUNIDADNEGOCIOID,FISTATUSFILA,FITIPOFILAID,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    VALUES (1,4,1,1,GETDATE(),'scc')
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIFILAID FROM TCCJCCTRFILA WITH(NOLOCK) WHERE FIFILAID = 1 AND FIUNIDADNEGOCIOID = 5)
+   BEGIN
+      insert into TCCJCCTRFILA (FIFILAID,FIUNIDADNEGOCIOID,FISTATUSFILA,FITIPOFILAID,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    VALUES (1,5,1,1,GETDATE(),'scc')
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIFILAID FROM TCCJCCTRFILA WITH(NOLOCK) WHERE FIFILAID = 1 AND FIUNIDADNEGOCIOID = 6)
+   BEGIN
+      insert into TCCJCCTRFILA (FIFILAID,FIUNIDADNEGOCIOID,FISTATUSFILA,FITIPOFILAID,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    VALUES (1,6,1,1,GETDATE(),'scc')
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FIFILAID FROM TCCJCCTRFILA WITH(NOLOCK) WHERE FIFILAID = 1 AND FIUNIDADNEGOCIOID = 7)
+   BEGIN
+      insert into TCCJCCTRFILA (FIFILAID,FIUNIDADNEGOCIOID,FISTATUSFILA,FITIPOFILAID,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    VALUES (1,7,1,1,GETDATE(),'scc')
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   -- *******************************************
+   -- ******* Carga Catalogo de Estatus de Turnos
+   -- *******************************************
+   IF NOT EXISTS(SELECT FISTATUSTURNOID FROM TCCJCCTRESTADOTURNO WITH(NOLOCK) WHERE FISTATUSTURNOID=1)
+   BEGIN
+      insert into TCCJCCTRESTADOTURNO (FISTATUSTURNOID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(1,'Generado',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FISTATUSTURNOID FROM TCCJCCTRESTADOTURNO WITH(NOLOCK) WHERE FISTATUSTURNOID=2)
+   BEGIN
+      insert into TCCJCCTRESTADOTURNO (FISTATUSTURNOID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(2,'Asignado',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FISTATUSTURNOID FROM TCCJCCTRESTADOTURNO WITH(NOLOCK) WHERE FISTATUSTURNOID=3)
+   BEGIN
+      insert into TCCJCCTRESTADOTURNO (FISTATUSTURNOID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(3,'En Atenci—n',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FISTATUSTURNOID FROM TCCJCCTRESTADOTURNO WITH(NOLOCK) WHERE FISTATUSTURNOID=4)
+   BEGIN
+      insert into TCCJCCTRESTADOTURNO (FISTATUSTURNOID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(4,'Atendido',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FISTATUSTURNOID FROM TCCJCCTRESTADOTURNO WITH(NOLOCK) WHERE FISTATUSTURNOID=5)
+   BEGIN
+      insert into TCCJCCTRESTADOTURNO (FISTATUSTURNOID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(5,'Caducado',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FISTATUSTURNOID FROM TCCJCCTRESTADOTURNO WITH(NOLOCK) WHERE FISTATUSTURNOID=6)
+   BEGIN
+      insert into TCCJCCTRESTADOTURNO (FISTATUSTURNOID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(6,'Cancelado',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+   
+   IF NOT EXISTS(SELECT FISTATUSTURNOID FROM TCCJCCTRESTADOTURNO WITH(NOLOCK) WHERE FISTATUSTURNOID=7)
+   BEGIN
+      insert into TCCJCCTRESTADOTURNO (FISTATUSTURNOID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(7,'Pospuesto',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   -- **************************************
+   -- ******* Carga Catalogo de Estatus Pool
+   -- **************************************
+   IF NOT EXISTS(SELECT FISTATUSPOOLID FROM TCCJCCTRESTADOPOOL WITH(NOLOCK) WHERE FISTATUSPOOLID=1)
+   BEGIN
+      insert into TCCJCCTRESTADOPOOL (FISTATUSPOOLID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(1,'No disponible',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FISTATUSPOOLID FROM TCCJCCTRESTADOPOOL WITH(NOLOCK) WHERE FISTATUSPOOLID=2)
+   BEGIN
+      insert into TCCJCCTRESTADOPOOL (FISTATUSPOOLID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(2,'Disponible',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FISTATUSPOOLID FROM TCCJCCTRESTADOPOOL WITH(NOLOCK) WHERE FISTATUSPOOLID=3)
+   BEGIN
+      insert into TCCJCCTRESTADOPOOL (FISTATUSPOOLID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(3,'Asignado',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   IF NOT EXISTS(SELECT FISTATUSPOOLID FROM TCCJCCTRESTADOPOOL WITH(NOLOCK) WHERE FISTATUSPOOLID=4)
+   BEGIN
+      insert into TCCJCCTRESTADOPOOL (FISTATUSPOOLID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(4,'Ocupado',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+
+   -- ************************************
+   -- ******* Carga Catalogo de Cualidades
+   -- ************************************
+   IF NOT EXISTS(SELECT FICUALIDADID FROM TCCJCCTRCUALIDADES WITH(NOLOCK) WHERE FICUALIDADID=1)
+   BEGIN
+      insert into TCCJCCTRCUALIDADES (FICUALIDADID,FCDESCRIPCION,FDFECHAINSERTA,FCUSERINSERTA) 
+                                    values(1,'Negocio',getdate(),'scc');
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+
+   -- ******************************************** 
+   -- ******* Carga Catalogo de Parámetros
+   -- ********************************************    
+   IF NOT EXISTS(SELECT FIMODULO FROM CATCAJCONFIGURACION WITH(NOLOCK) WHERE FIMODULO=104 AND FIFOLIO=1)
+   BEGIN
+      INSERT INTO CATCAJCONFIGURACION (FIMODULO,FIFOLIO,FCMODULODESC,FCFOLIODESC,FCVALOR,FDULTIMAACT,FISTATUS)
+      VALUES (104,1,'Turnador CC','Plan de Contingencia','0',getdate(),1);
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+   
+   IF NOT EXISTS(SELECT FIMODULO FROM CATCAJCONFIGURACION WITH(NOLOCK) WHERE FIMODULO=104 AND FIFOLIO=2)
+   BEGIN
+      INSERT INTO CATCAJCONFIGURACION (FIMODULO,FIFOLIO,FCMODULODESC,FCFOLIODESC,FCVALOR,FDULTIMAACT,FISTATUS)
+      VALUES (104,2,'Turnador CC','Caducidad de Turnos','20',getdate(),1);
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+   
+   IF NOT EXISTS(SELECT FIMODULO FROM CATCAJCONFIGURACION WITH(NOLOCK) WHERE FIMODULO=104 AND FIFOLIO=3)
+   BEGIN
+      INSERT INTO CATCAJCONFIGURACION (FIMODULO,FIFOLIO,FCMODULODESC,FCFOLIODESC,FCVALOR,FDULTIMAACT,FISTATUS)
+      VALUES (104,3,'Turnador CC','Tiempo de vida display (seg)','3',getdate(),1);
+      IF @@ERROR <> 0 GOTO CtrlErrores 
+   END
+   
+   COMMIT TRAN 
+   SET NOCOUNT OFF
+   RETURN
+
+-----------------------------------------------------------------------------------------
+--- Manejo de Errores
+-----------------------------------------------------------------------------------------
+CtrlErrores:
+   SET NOCOUNT OFF
+   IF @@TRANCOUNT>0
+   ROLLBACK TRAN
+   RAISERROR ( 'Error al Insertar los Parametro de Configuracion para la Aplicacion de Caja Central', 18, 1 )
+
+GO

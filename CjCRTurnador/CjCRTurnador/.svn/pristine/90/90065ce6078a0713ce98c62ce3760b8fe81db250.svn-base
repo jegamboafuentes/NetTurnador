@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.Text;
+using System.Web;
+
+using Baz.Caja.Commons.Collection;
+using Baz.Caja.Commons.Model;
+using Baz.Caja.Turnador.Model;
+
+namespace Baz.Caja.Turnador.Service
+{
+    [ServiceContract]
+    public interface CjCRIPoolService
+    {
+        [OperationContract]
+        [WebInvoke(
+            Method = "PUT",
+            UriTemplate = "pool/{noEmpleado}/nodisponible/",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CjCRSummary SetNoDisponible(String noEmpleado);
+
+        [OperationContract]
+        [WebInvoke(
+            Method = "PUT",
+            UriTemplate = "pool/{noEmpleado}/disponible/",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CjCRSummary SetDisponible(String noEmpleado);
+
+
+        [OperationContract]
+        [WebGet(
+            UriTemplate = "pool/{noEmpleado}/unidad/",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CjCRUnidadEmpleado MuestraUnidad(String noEmpleado);
+
+
+        [OperationContract]
+        [WebInvoke(
+            Method = "PUT",
+            UriTemplate = "pool/{noEmpleado}/unidad/{unidadNegocio}/",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CjCRSummary CambiaUnidad(String noEmpleado, String unidadNegocio);
+
+
+        [OperationContract]
+        [WebGet(
+            UriTemplate = "pool/{noEmpleado}/consultacapacidad/",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CjCRSummary ConsultaCapacidad(String noEmpleado);
+
+    }
+}

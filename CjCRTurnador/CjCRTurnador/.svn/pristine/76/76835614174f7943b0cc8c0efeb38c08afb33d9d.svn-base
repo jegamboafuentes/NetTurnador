@@ -1,0 +1,435 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web;
+
+using Baz.Caja.Commons.Collection;
+using Baz.Caja.Commons.Dao;
+using Baz.Caja.Commons.Model;
+using Baz.Caja.Commons.Support;
+using Baz.Caja.Commons.Util;
+using Baz.Caja.Turnador.Dao;
+using Baz.Caja.Turnador.Model;
+using Baz.Caja.Turnador.Support;
+using Baz.Caja.Turnador.Util;
+
+namespace Baz.Caja.Turnador.Logic
+{
+    public class CjCRTurnosLogic
+    {
+
+        
+        public CjCRTurnosDao TurnosDao { get; set; }
+        public CjCRNegocioDao NegocioDao { get; set; }
+        public CjCRPoolDao PoolDao { get; set; }
+        public CjCRCajaConfigDao CajaConfigDao { get; set; }
+        public CjCRTurnadorLogic TurnadorLogic { get; set; }
+        public CjCRTurnosTask TurnosTask { get; set; }
+        public CjCRStateMachinePool EstadosAtencionPool { get; set; }
+        public CjCRStateMachinePool EstadosTurnoPool { get; set; }
+        public CjCRTurnadorSummaryFactory TurnadorSummaryFactory { get; set; }
+
+        public CjCRTurno GenerarTurno(CjCRTurno turno, CjCRCredential credential)
+        {
+            turno = TurnosDao.GenerarTurno(turno, credential);
+
+            TurnosTask.CompletarTurnosProcess(credential);
+            TurnosTask.CaducarTurnosProcess(turno.IdUnidadNegocio, credential);
+
+            return turno;
+        }
+
+        public CjCRTurno GetTurno(int fecha, int idUnidadNegocio, int idTurno, CjCRCredential credential)
+        {
+            CjCRTurno turno = new CjCRTurno();
+            CjCREmpleadoPool empleadoPool;
+
+            turno.Fecha = fecha;
+            turno.IdUnidadNegocio = idUnidadNegocio;
+            turno.IdTurno = idTurno;
+
+            turno = TurnosDao.GetTurno(turno, credential);
+
+            if (turno != default(CjCRTurno) && turno.Empleado != default(CjCREmpleadoPool))
+            {
+                empleadoPool = PoolDao.GetPoolByEmpleado(turno.Empleado.NoEmpleado, credential);
+
+                if (empleadoPool != default(CjCREmpleadoPool))
+                {
+                    turno.Empleado = empleadoPool;
+                }
+            }
+
+            return turno;
+        }
+
+        public CjCRTurno GetTurnoAsignado(int fecha, int idUnidadNegocio, String noEmpleado,
+            CjCRCredential credential)
+        {
+            List<CjCRTurno> turnos = TurnosDao.GetTurnos(fecha, idUnidadNegocio,
+                CjCRTurnadorStatus.TURNO_ASIGNADO, credential);
+            CjCRTurno turno = new CjCRTurno();
+
+            foreach (CjCRTurno turnoAsignado in turnos)
+            {
+                if (turnoAsignado.Empleado.NoEmpleado.Equals(noEmpleado))
+                {
+                    return turnoAsignado;
+                }
+            }
+
+            return turno;
+        }
+
+        public CjCRDictionary<Int32, List<CjCRTurno>> GetTurnosEstado(int fecha, int estado, CjCRCredential credential)
+        {
+            List<CjCRTurno> turnos = TurnosDao.GetTurnos(fecha, CjCRDaoUtils.INT_NULL, estado, credential);
+            CjCRDictionary<Int32, List<CjCRTurno>> turnosAsignados = 
+                new CjCRDictionary<Int32, List<CjCRTurno>>();
+            List<CjCRTurno> cola;
+
+            foreach (CjCRTurno turno in turnos)
+            {
+                cola = turnosAsignados.Get(turno.IdUnidadNegocio);
+
+                if (cola == default(List<CjCRTurno>))
+                {
+                    cola = new List<CjCRTurno>();
+                    turnosAsignados.Put(turno.IdUnidadNegocio, cola);
+                }
+
+                cola.Add(turno);
+            }
+
+            return turnosAsignados;
+        }
+
+
+        public CjCRDictionary<Int32, List<CjCRTurno>> GetUltimosValores(int fecha, CjCRCredential credential)
+        {
+            List<CjCRTurno> turnosAtendidos = TurnosDao.GetTurnos(fecha, CjCRDaoUtils.INT_NULL, CjCRTurnadorStatus.TURNO_ATENDIDO, credential);
+            List<CjCRTurno> turnosAtencion = TurnosDao.GetTurnos(fecha, CjCRDaoUtils.INT_NULL, CjCRTurnadorStatus.TURNO_EN_ATENCION, credential);
+            List<CjCRTurno> turnosAsignados = TurnosDao.GetTurnos(fecha, CjCRDaoUtils.INT_NULL, CjCRTurnadorStatus.TURNO_ASIGNADO, credential);
+            List<CjCRTurno> todosTurnos = new List<CjCRTurno>();
+            todosTurnos = turnosAtendidos.Union(turnosAtencion).ToList();
+            todosTurnos = todosTurnos.Union(turnosAsignados).ToList();
+            CjCRDictionary<Int32, List<CjCRTurno>> ultimosTurnos = new CjCRDictionary<Int32, List<CjCRTurno>>();
+            List<CjCRTurno> cola;
+            cola = new List<CjCRTurno>();
+            
+            foreach (CjCRTurno turno in todosTurnos)
+            {
+                if (turno.Virtual == 0)
+                {
+                    cola = ultimosTurnos.Get(turno.IdUnidadNegocio);
+                    if (cola == default(List<CjCRTurno>))
+                    {
+                        cola = new List<CjCRTurno>();
+                        ultimosTurnos.Put(turno.IdUnidadNegocio, cola);
+                    }
+                    cola.Add(turno);
+                    foreach (CjCRTurno i in todosTurnos)
+                    {
+                        if (turno.IdUnidadNegocio == i.IdUnidadNegocio)
+                        {
+                            if (turno.IdTurno < i.IdTurno && i.Virtual == 0)
+                            {
+                                cola.Remove(turno);
+                            }
+                        }
+                    }
+                }
+                
+            }
+            return ultimosTurnos;
+         }
+
+
+
+        public CjCRSummary PosponerTurno(CjCRTurno turno, CjCRCredential credential)
+        {
+            String noEmpleado = (turno.Empleado != default(CjCREmpleadoPool) 
+                ? turno.Empleado.NoEmpleado : default(String));
+            return ActualizarTurno(noEmpleado, turno, CjCRTurnadorStatus.ATENCION_NO_DISPONIBLE,
+                CjCRTurnadorStatus.TURNO_POSPUESTO, credential);
+        }
+
+        public CjCRSummary CancelarTurno(CjCRTurno turno, CjCRCredential credential)
+        {
+
+            return SetEstadoTurno(turno, CjCRTurnadorStatus.TURNO_CANCELADO, credential);
+        }
+
+        public CjCREmpleadoPool GetEmpleado(String noEmpleado, CjCRCredential credential)
+        {
+            CjCREmpleadoPool empPool = new CjCREmpleadoPool();
+            empPool = PoolDao.GetPoolByEmpleado(noEmpleado, credential);
+            if (empPool == null) empPool = new CjCREmpleadoPool();
+            return empPool;
+        }
+
+        public CjCRSummary AtenderTurno(String noEmpleado, CjCRTurno turno, CjCRCredential credential)
+        {
+            CjCRSummary mensaje = new CjCRSummary();
+            CjCRSummary mensaje2 = new CjCRSummary();
+            CjCREmpleadoPool emp = new CjCREmpleadoPool();
+            emp = GetEmpleado(noEmpleado,credential);
+            int estado = GetTurno(turno.Fecha, turno.IdUnidadNegocio, turno.IdTurno, credential).Estado;
+
+            if (estado == CjCRTurnadorStatus.TURNO_ASIGNADO)
+            {
+                if (emp.Estado == CjCRTurnadorStatus.ATENCION_ASIGNADO)
+                {
+                    return ActualizarTurno(noEmpleado, turno, CjCRTurnadorStatus.ATENCION_OCUPADO,
+                    CjCRTurnadorStatus.TURNO_EN_ATENCION, credential);
+                }
+                else
+                {
+                    mensaje = TurnadorSummaryFactory.Get(CjCRTurnadorStatus.EMPLEADO_ESTADO_INCORRECTO);
+                    return mensaje;
+                }
+            }
+            else
+            {
+                
+                mensaje = TurnadorSummaryFactory.Get(CjCRTurnadorStatus.TURNO_ESTADO_INCORRECTO);
+                
+                
+                return mensaje;
+                
+            }
+        }
+
+        public CjCRSummaryTurno AtenderTurnoVirtual(int idUnidadNegocio, String noEmpleado, CjCRCredential credential)
+        {
+            CjCREmpleadoPool empleadoPool = PoolDao.GetPoolByEmpleado(noEmpleado, credential);
+            CjCRCajaConfig cajaConfig = CajaConfigDao.GetConfiguracion(
+                TurnadorLogic.GetPlanContingenciaConfig(), credential);
+            CjCRSummaryTurno summaryTurno;
+            CjCRTurno turnoVirtual;
+
+            if (CjCRParseUtils.ToInt32(cajaConfig.Valor) != CjCRTurnadorStatus.PLAN_CONTINGENCIA_ACTIVO) 
+            {
+                return TurnadorSummaryFactory.GetSummaryTurno(
+                    CjCRTurnadorStatus.SIN_PLAN_CONTINGENCIA);
+            }
+
+            if (empleadoPool != default(CjCREmpleadoPool)
+                && (empleadoPool.Estado == CjCRTurnadorStatus.ATENCION_DISPONIBLE
+                    || empleadoPool.Estado == CjCRTurnadorStatus.ATENCION_NO_DISPONIBLE))
+            {
+                turnoVirtual = TurnosDao.AtenderVirtual(idUnidadNegocio, noEmpleado, credential);
+            }
+            else
+            {
+                return TurnadorSummaryFactory.GetSummaryTurno(
+                    CjCRTurnadorStatus.EMPLEADO_NO_DISPONIBLE);
+            }
+
+            if (turnoVirtual != default(CjCRTurno))
+            {
+                summaryTurno = TurnadorSummaryFactory.GetSummaryTurno(
+                    CjCRTurnadorStatus.OPERATION_COMPLETE);
+                summaryTurno.Turno = turnoVirtual;
+            }
+            else
+            {
+                summaryTurno = TurnadorSummaryFactory.GetSummaryTurno(
+                    CjCRTurnadorStatus.INCOMPLETE_OPERATION);
+            }
+
+            return summaryTurno;
+        }
+
+         public CjCRSummary ApropiarTurno(String noEmpleado, CjCRTurno turno, CjCRCredential credential)
+        {
+            CjCREmpleadoPool empleadoPool = PoolDao.GetPoolByEmpleado(noEmpleado, credential);
+            CjCRUnidadNegocio unidadNegocio;
+            CjCRSummary summary;
+            int status;
+            turno.Estado = TurnosDao.GetTurno(turno, credential).Estado;
+            if (empleadoPool != null)
+            {
+                if (empleadoPool.Cualidades.GetIdUnidadNegocio() != turno.IdUnidadNegocio)
+                {
+                    summary = TurnadorSummaryFactory.Get(CjCRTurnadorStatus.EMPLEADO_DIFERENTE_NEGOCIO);
+                    unidadNegocio = NegocioDao.GetUnidadNegocio(turno.IdUnidadNegocio, credential);
+
+                    summary.Detail = String.Format(summary.Detail, noEmpleado,
+                        (unidadNegocio != default(CjCRUnidadNegocio) ? unidadNegocio.Descripcion : ""));
+
+                    return summary;
+                }
+
+                if (turno.Estado != CjCRTurnadorStatus.TURNO_ASIGNADO
+                        && turno.Estado != CjCRTurnadorStatus.TURNO_POSPUESTO)
+                {
+                    return TurnadorSummaryFactory.Get(CjCRTurnadorStatus.TURNO_ESTADO_INCORRECTO);
+                }
+
+                if (empleadoPool != default(CjCREmpleadoPool)
+                    && (empleadoPool.Estado == CjCRTurnadorStatus.ATENCION_DISPONIBLE
+                        || empleadoPool.Estado == CjCRTurnadorStatus.ATENCION_NO_DISPONIBLE))
+                {
+                    status = TurnosDao.ApropiarTurno(noEmpleado, turno, credential);
+                    return TurnadorSummaryFactory.Get(status);
+                }
+                else
+                {
+                    return TurnadorSummaryFactory.Get(CjCRTurnadorStatus.EMPLEADO_NO_DISPONIBLE);
+                }
+            }
+            else { return TurnadorSummaryFactory.Get(CjCRTurnadorStatus.EMPLEADO_INEXISTENTE); }
+
+            
+        }
+
+        public CjCRSummary FinalizarTurno(String noEmpleado, CjCRTurno turno, CjCRCredential credential)
+        {
+            
+            CjCREmpleadoPool empPool = PoolDao.GetPoolByEmpleado(noEmpleado, credential);
+                CjCREmpleadoPool empleadoPool = new CjCREmpleadoPool();
+                empleadoPool = PoolDao.GetPoolByEmpleado(noEmpleado, credential);
+                CjCRCualidadList cualidad = new CjCRCualidadList();
+                int unidadNegocio = PoolDao.UnidadEmpleado(noEmpleado, credential);
+                cualidad.SetIdUnidadNegocio(unidadNegocio);
+                empleadoPool.Cualidades = cualidad;
+                CjCRTurno turnoAtendido = TurnosDao.GetTurno(turno, credential);
+
+                return SetEstado(noEmpleado, turnoAtendido,
+                CjCRTurnadorStatus.ATENCION_NO_DISPONIBLE,
+                CjCRTurnadorStatus.TURNO_ATENDIDO, credential);
+            
+            
+            
+        }
+
+        private CjCRSummary ActualizarTurno(String noEmpleado, CjCRTurno turno, 
+            int sigEstadoAtencion, int sigEstadoTurno, CjCRCredential credential)
+        {
+            CjCRTurno turnoAsignado = TurnosDao.GetTurno(turno, credential);
+            turno = turnoAsignado;
+            CjCRSummary summary;
+
+            if (turnoAsignado == default(CjCRTurno))
+            {
+                return TurnadorSummaryFactory.Get(CjCRTurnadorStatus.OPERATION_FAIL);
+            }
+
+            if (turnoAsignado.Empleado == default(CjCREmpleadoPool))
+            {
+                return TurnadorSummaryFactory.Get(CjCRTurnadorStatus.EMPLEADO_NO_ASIGNADO);
+            }
+
+            if (noEmpleado != default(String))
+            {
+                if (!turnoAsignado.Empleado.NoEmpleado.Equals(noEmpleado))
+                {
+                    summary = TurnadorSummaryFactory.Get(CjCRTurnadorStatus.TURNO_ASIGNADO_OTRO_EMPLEADO);
+
+                    summary.Detail = String.Format(summary.Detail, turnoAsignado.IdTurno,
+                        turnoAsignado.Empleado.Nombre, turnoAsignado.Empleado.NoEmpleado);
+
+                    return summary;
+                }
+            }
+
+            return SetEstado(noEmpleado, turnoAsignado,
+                sigEstadoAtencion, sigEstadoTurno, credential);
+        }
+
+        private CjCRSummary SetEstado(String noEmpleado, CjCRTurno turno,
+            int sigEstadoAtencion, int sigEstadoTurno, CjCRCredential credential)
+        {
+            CjCREmpleadoPool empleadoPool = PoolDao.GetPoolByEmpleado(noEmpleado, credential);
+            CjCRSummary summary = TurnadorSummaryFactory.Get(CjCRTurnadorStatus.OPERATION_FAIL);
+            List<CjCRSummary> summaries = new List<CjCRSummary>();
+            StringBuilder detail = new StringBuilder();
+            bool complete = true;
+
+            if (empleadoPool != default(CjCREmpleadoPool))
+            {
+                summaries.Add(SetEstadoEmpleado(empleadoPool, sigEstadoAtencion, credential));
+                summaries.Add(SetEstadoTurno(turno, sigEstadoTurno, credential));
+
+                foreach (CjCRSummary summaryStatus in summaries)
+                {
+                    complete = (complete && summaryStatus.Complete);
+
+                    if (!summaryStatus.Complete)
+                    {
+                        detail.Append(summaryStatus.Detail);
+                        detail.Append(", ");
+                    }
+                }
+
+                if (complete)
+                {
+                    summary = TurnadorSummaryFactory.Get(CjCRTurnadorStatus.OPERATION_COMPLETE);
+                }
+                else
+                {
+                    detail = CjCRStringUtils.TrimCharacter(detail, ',');
+                    summary = TurnadorSummaryFactory.Get(CjCRTurnadorStatus.INCOMPLETE_OPERATION, 
+                        detail.ToString());
+                }
+            }
+
+            return summary;
+        }
+
+        private CjCRSummary SetEstadoEmpleado(CjCREmpleadoPool empleadoPool, int sigEstadoAtencion,
+            CjCRCredential credential)
+        {
+            int statusResult = CjCRTurnadorStatus.EMPLEADO_ESTADO_INCORRECTO;
+            if (EstadosAtencionPool.IsNext(empleadoPool.Estado,
+                        sigEstadoAtencion))
+            {
+                empleadoPool.Estado = sigEstadoAtencion;
+
+                statusResult = PoolDao.SetEstado(empleadoPool, credential);
+            }
+            
+            return TurnadorSummaryFactory.Get(statusResult);
+        }
+
+        private CjCRSummary SetEstadoTurno(CjCRTurno turno, int sigEstadoTurno, CjCRCredential credential)
+        {
+            
+            int statusResult = CjCRTurnadorStatus.TURNO_ESTADO_INCORRECTO;
+            turno.Estado = TurnosDao.GetTurno(turno, credential).Estado;
+            if (EstadosTurnoPool.IsNext(turno.Estado, sigEstadoTurno))
+            {
+                turno.Estado = sigEstadoTurno;
+
+                statusResult = TurnosDao.SetEstado(turno, credential);
+            }
+
+            return TurnadorSummaryFactory.Get(statusResult);
+        }
+
+        public CjCRTurno GetTurnoEmpleado(int fecha, String noEmpleado,
+            CjCRCredential credential)
+        {
+            List<CjCRTurno> turnosAtencion = TurnosDao.GetTurnos(fecha, CjCRDaoUtils.INT_NULL, CjCRTurnadorStatus.TURNO_EN_ATENCION, credential);
+            List<CjCRTurno> turnosAsignados = TurnosDao.GetTurnos(fecha, CjCRDaoUtils.INT_NULL, CjCRTurnadorStatus.TURNO_ASIGNADO, credential);
+            List<CjCRTurno> todosTurnos = new List<CjCRTurno>();
+            todosTurnos = turnosAtencion.Union(turnosAsignados).ToList();
+
+            CjCRTurno sinTurno = new CjCRTurno();
+
+            foreach (CjCRTurno turno in todosTurnos)
+            {
+                if (turno.Empleado.NoEmpleado.Equals(noEmpleado))
+                {
+                    return turno;
+                }
+            }
+
+            return sinTurno;
+        }
+
+
+   }
+}

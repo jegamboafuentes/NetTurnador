@@ -1,0 +1,85 @@
+﻿
+var Builder_DefaultBuilder = _package('Builder.DefaultBuilder');
+
+Builder_DefaultBuilder.getUnidadPanel = function (_idUnidadNegocio) {
+    var _this = Builder_DefaultBuilder;
+    var part = '<div class="span2b8">';
+
+    part = part.concat('<img src="');
+    part = part.concat(_get('imageTicket'));
+    part = part.concat('" class="img-rounded unidadImage"/>');
+    part = part.concat('<img src="');
+    part = part.concat(_this.getImageUnidad(_idUnidadNegocio));
+    part = part.concat('" class="img-rounded logoUnidadImage"/>');
+    part = part.concat('<p id="turnoUnidad-');
+    part = part.concat(_idUnidadNegocio);
+    part = part.concat('" class="turnoUnidad">');
+    part = part.concat(_get('unidadNumberDefault'));
+    part = part.concat('</p></div>');
+
+    return part;
+};
+
+<<<<<<< .mine
+    //Builder_DefaultBuilder.getMensajeAtencion = function (_idUnidadNegocio, _puntoAtencion) {
+Builder_DefaultBuilder.getMensajeAtencion = function (_nombreEmpleado, _puntoAtencion) {
+=======
+    //Builder_DefaultBuilder.getMensajeAtencion = function (_idUnidadNegocio, _puntoAtencion) {
+    Builder_DefaultBuilder.getMensajeAtencion = function (_nombreEmpleado, _puntoAtencion) {
+>>>>>>> .r4269
+    //var mensaje = _getMessage('mensajeAtencion1');
+    var mensaje = "";
+    var atencion = "";
+    var part = '<p id="mensajeAtencion" class="mensajeDetail">';
+
+    if (!_isUndefined(_nombreEmpleado) && !_isUndefined(_puntoAtencion)) {
+        //unidadNegocio = Client_NegocioClient.unidadesNegocio[_idUnidadNegocio];
+        if (!_isUndefined(_nombreEmpleado) && _puntoAtencion === "") {
+            mensaje = _getMessage('mensajeAtencion3');
+            mensaje = mensaje.concat('<br><span class="datosDetail">');
+            mensaje = mensaje.concat(_nombreEmpleado.toUpperCase());
+            mensaje = mensaje.concat('</span> ');
+        } else {
+            mensaje = _getMessage('mensajeAtencion1');
+            mensaje = mensaje.concat('<br><span class="datosDetail">');
+            mensaje = mensaje.concat(_puntoAtencion.toUpperCase());
+            //            mensaje = mensaje.concat(unidadNegocio.Descripcion.toUpperCase());
+            mensaje = mensaje.concat('</span> ');
+        }
+    }
+
+    //alert(mensaje);
+    if (mensaje.search('CAJA') != -1) {
+        var cajaPos = mensaje.indexOf('CAJA');
+        var mensaje2;
+        mensaje2 = mensaje.replace(/[0]/, "<br>");
+        mensaje = mensaje2;
+    }
+    part = part.concat(mensaje);
+    part = part.concat('</p>');
+
+    return part;
+};
+
+Builder_DefaultBuilder.getMensajeAtencion1 = function (_idUnidadNegocio) {
+    var atencion = "";
+    
+    if (!_isUndefined(_idUnidadNegocio)) {
+        unidadNegocio = Client_NegocioClient.unidadesNegocio[_idUnidadNegocio];
+
+        if (!_isUndefined(unidadNegocio)) {
+            atencion = _getMessage('atencion');
+        }
+    }
+
+   
+    return atencion;
+};
+
+Builder_DefaultBuilder.getImageUnidad = function (_idUnidadNegocio) {
+    return _get('imageUnidadPart').replace(/\{idUnidadNegocio\}/g, _idUnidadNegocio);
+};
+
+Builder_DefaultBuilder.getImageEmpleado = function (_noEmpleado) {
+    return _get('imageEmpleadoPart').replace(/\{noEmpleado\}/g, _noEmpleado);
+};

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="71c8a1bd-a87f-4b58-b74e-cc8d109dc8a0" name="B859390@WXP_FGAMEZ 2013-12-03 18:27:15" runUser="BANCOAZTECA\B859390" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="de653c0a-5f0b-4dcc-aa03-7cc115229a2f">
+    <Description>Esta es la configuración de pruebas predeterminada para una ejecución de pruebas local.</Description>
+    <Deployment userDeploymentRoot="C:\gfb\workspaces\networkspace\CjCRTurnador\TestResults" useDefaultDeploymentRoot="false" enabled="false" runDeploymentRoot="B859390_WXP_FGAMEZ 2013-12-03 18_27_15">
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Spring.Data.dll" />
+      <DeploymentItem filename="C:\gfb\workspaces\networkspace\CjCRBAZCommons\CjCRBAZCommons\bin\Debug\Baz.Caja.Commons.dll" />
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Spring.Aop.dll" />
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Spring.Core.dll" />
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Common.Logging.dll" />
+      <DeploymentItem filename="C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Turnador.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-12-03T18:27:15.7821710-06:00" queuing="2013-12-03T18:27:15.7977602-06:00" start="2013-12-03T18:27:15.8133494-06:00" finish="2013-12-03T18:27:26.3672378-06:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="16" executed="16" error="0" failed="16" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <DebugTrace>no configuration section &lt;common/logging&gt; found - suppressing logging output
+</DebugTrace>
+    </Output>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CancelarTurnoTest" storage="c:\gfb\workspaces\networkspace\cjcrturnador\cjcrturnadortest\bin\debug\baz.caja.turnador.test.dll" id="81534639-43c2-b394-d70a-29c369fa3259">
+      <Execution id="ecfab6e8-51d5-4601-bc8d-73be971da2d2" />
+      <TestMethod codeBase="C:/gfb/workspaces/networkspace/CjCRTurnador/CjCRTurnadorTest/bin/Debug/Baz.Caja.Turnador.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest, Baz.Caja.Turnador.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CancelarTurnoTest" />
+      <DataSource connectionString="|DataDirectory|\resource\datasource\TurnoTest.xml" providerInvariantName="Microsoft.VisualStudio.TestTools.DataSource.XML" tableName="entrada" />
+    </UnitTest>
+    <UnitTest name="AtenderVirtualTest" storage="c:\gfb\workspaces\networkspace\cjcrturnador\cjcrturnadortest\bin\debug\baz.caja.turnador.test.dll" id="7184f34c-99d0-b6e9-7b20-e35849e84b78">
+      <Execution id="77009696-5359-4626-a377-a8b0119b7da4" />
+      <TestMethod codeBase="C:/gfb/workspaces/networkspace/CjCRTurnador/CjCRTurnadorTest/bin/Debug/Baz.Caja.Turnador.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest, Baz.Caja.Turnador.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="AtenderVirtualTest" />
+      <DataSource connectionString="|DataDirectory|\resource\datasource\TurnoTest.xml" providerInvariantName="Microsoft.VisualStudio.TestTools.DataSource.XML" tableName="entrada" />
+    </UnitTest>
+    <UnitTest name="CaducarTurnoTest" storage="c:\gfb\workspaces\networkspace\cjcrturnador\cjcrturnadortest\bin\debug\baz.caja.turnador.test.dll" id="7c90f9c5-18f9-349c-4484-c9fa726f092c">
+      <Execution id="78b8a52e-3565-4c77-9a41-24c57b8ada61" />
+      <TestMethod codeBase="C:/gfb/workspaces/networkspace/CjCRTurnador/CjCRTurnadorTest/bin/Debug/Baz.Caja.Turnador.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest, Baz.Caja.Turnador.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CaducarTurnoTest" />
+      <DataSource connectionString="|DataDirectory|\resource\datasource\TurnoTest.xml" providerInvariantName="Microsoft.VisualStudio.TestTools.DataSource.XML" tableName="entrada" />
+    </UnitTest>
+    <UnitTest name="ApropiarTurnoTest" storage="c:\gfb\workspaces\networkspace\cjcrturnador\cjcrturnadortest\bin\debug\baz.caja.turnador.test.dll" id="e062c1d9-c339-1cd0-0d22-cd14de58137e">
+      <Execution id="8ecfdb0b-fd12-4d8f-8b10-e3cef7341e31" />
+      <TestMethod codeBase="C:/gfb/workspaces/networkspace/CjCRTurnador/CjCRTurnadorTest/bin/Debug/Baz.Caja.Turnador.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest, Baz.Caja.Turnador.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ApropiarTurnoTest" />
+      <DataSource connectionString="|DataDirectory|\resource\datasource\TurnoApropiadoTest.xml" providerInvariantName="Microsoft.VisualStudio.TestTools.DataSource.XML" tableName="entrada" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Resultados que no están en la lista" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Todos los resultados cargados" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="7c90f9c5-18f9-349c-4484-c9fa726f092c" executionId="78b8a52e-3565-4c77-9a41-24c57b8ada61" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="81534639-43c2-b394-d70a-29c369fa3259" executionId="ecfab6e8-51d5-4601-bc8d-73be971da2d2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7184f34c-99d0-b6e9-7b20-e35849e84b78" executionId="77009696-5359-4626-a377-a8b0119b7da4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e062c1d9-c339-1cd0-0d22-cd14de58137e" executionId="8ecfdb0b-fd12-4d8f-8b10-e3cef7341e31" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="78b8a52e-3565-4c77-9a41-24c57b8ada61" testId="7c90f9c5-18f9-349c-4484-c9fa726f092c" testName="CaducarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:00.0893158" startTime="2013-12-03T18:27:15.8133494-06:00" endTime="2013-12-03T18:27:16.9201826-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="78b8a52e-3565-4c77-9a41-24c57b8ada61" resultType="DataDrivenTest">
+      <Counters error="0" failed="3" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+      <InnerResults>
+        <UnitTestResult executionId="6fcaadf9-011a-4db0-91e3-5171c5f2f540" parentExecutionId="78b8a52e-3565-4c77-9a41-24c57b8ada61" testId="7c90f9c5-18f9-349c-4484-c9fa726f092c" testName="CaducarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:00.0703016" startTime="2013-12-03T18:27:16.8266474-06:00" endTime="2013-12-03T18:27:16.9045934-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="78b8a52e-3565-4c77-9a41-24c57b8ada61" dataRowInfo="0" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>El método de prueba Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.CaducarTurnoTest produjo la excepción: 
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.</Message>
+              <StackTrace>    en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.CaducarTurnoTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 108
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+        <UnitTestResult executionId="08c006a7-e48f-40f7-ae05-90ccf3dcd6d8" parentExecutionId="78b8a52e-3565-4c77-9a41-24c57b8ada61" testId="7c90f9c5-18f9-349c-4484-c9fa726f092c" testName="CaducarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:00.0023887" startTime="2013-12-03T18:27:16.9045934-06:00" endTime="2013-12-03T18:27:16.9045934-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="78b8a52e-3565-4c77-9a41-24c57b8ada61" dataRowInfo="1" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>El método de prueba Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.CaducarTurnoTest produjo la excepción: 
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.</Message>
+              <StackTrace>    en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.CaducarTurnoTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 108
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+        <UnitTestResult executionId="88cee438-31bc-4348-af77-fc80296a0d50" parentExecutionId="78b8a52e-3565-4c77-9a41-24c57b8ada61" testId="7c90f9c5-18f9-349c-4484-c9fa726f092c" testName="CaducarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:00.0017640" startTime="2013-12-03T18:27:16.9045934-06:00" endTime="2013-12-03T18:27:16.9045934-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="78b8a52e-3565-4c77-9a41-24c57b8ada61" dataRowInfo="2" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>El método de prueba Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.CaducarTurnoTest produjo la excepción: 
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.</Message>
+              <StackTrace>    en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.CaducarTurnoTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 108
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+      </InnerResults>
+    </UnitTestResult>
+    <UnitTestResult executionId="ecfab6e8-51d5-4601-bc8d-73be971da2d2" testId="81534639-43c2-b394-d70a-29c369fa3259" testName="CancelarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:04.6543691" startTime="2013-12-03T18:27:16.9201826-06:00" endTime="2013-12-03T18:27:21.5813534-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ecfab6e8-51d5-4601-bc8d-73be971da2d2" resultType="DataDrivenTest">
+      <Counters error="0" failed="3" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+      <InnerResults>
+        <UnitTestResult executionId="91e08b46-75c5-46f4-8647-ceeb1e08b0a8" parentExecutionId="ecfab6e8-51d5-4601-bc8d-73be971da2d2" testId="81534639-43c2-b394-d70a-29c369fa3259" testName="CancelarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:01.5632105" startTime="2013-12-03T18:27:16.9201826-06:00" endTime="2013-12-03T18:27:18.4791026-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ecfab6e8-51d5-4601-bc8d-73be971da2d2" dataRowInfo="0" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>Error de Assert.AreEqual. Se esperaba &lt;True&gt;, pero es &lt;False&gt;. Turnos no establecidos como cancelados</Message>
+              <StackTrace>   en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.CancelarTurnoTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 159
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+        <UnitTestResult executionId="4ff1e15b-c3a7-4f1a-ab7c-128a6ad57558" parentExecutionId="ecfab6e8-51d5-4601-bc8d-73be971da2d2" testId="81534639-43c2-b394-d70a-29c369fa3259" testName="CancelarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:01.5383620" startTime="2013-12-03T18:27:18.4791026-06:00" endTime="2013-12-03T18:27:20.0224334-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ecfab6e8-51d5-4601-bc8d-73be971da2d2" dataRowInfo="1" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>Error de Assert.AreEqual. Se esperaba &lt;True&gt;, pero es &lt;False&gt;. Turnos no establecidos como cancelados</Message>
+              <StackTrace>   en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.CancelarTurnoTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 159
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+        <UnitTestResult executionId="fee16e44-fcb2-452a-be54-c1b7630c613c" parentExecutionId="ecfab6e8-51d5-4601-bc8d-73be971da2d2" testId="81534639-43c2-b394-d70a-29c369fa3259" testName="CancelarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:01.5512504" startTime="2013-12-03T18:27:20.0224334-06:00" endTime="2013-12-03T18:27:21.5657642-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ecfab6e8-51d5-4601-bc8d-73be971da2d2" dataRowInfo="2" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>Error de Assert.AreEqual. Se esperaba &lt;True&gt;, pero es &lt;False&gt;. Turnos no establecidos como cancelados</Message>
+              <StackTrace>   en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.CancelarTurnoTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 159
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+      </InnerResults>
+    </UnitTestResult>
+    <UnitTestResult executionId="77009696-5359-4626-a377-a8b0119b7da4" testId="7184f34c-99d0-b6e9-7b20-e35849e84b78" testName="AtenderVirtualTest" computerName="WXP_FGAMEZ" duration="00:00:00.0232174" startTime="2013-12-03T18:27:21.5813534-06:00" endTime="2013-12-03T18:27:21.6125318-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="77009696-5359-4626-a377-a8b0119b7da4" resultType="DataDrivenTest">
+      <Counters error="0" failed="3" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+      <InnerResults>
+        <UnitTestResult executionId="d3aff689-cbe7-4038-afff-c7424d94b295" parentExecutionId="77009696-5359-4626-a377-a8b0119b7da4" testId="7184f34c-99d0-b6e9-7b20-e35849e84b78" testName="AtenderVirtualTest" computerName="WXP_FGAMEZ" duration="00:00:00.0126565" startTime="2013-12-03T18:27:21.5813534-06:00" endTime="2013-12-03T18:27:21.5969426-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="77009696-5359-4626-a377-a8b0119b7da4" dataRowInfo="0" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>El método de prueba Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.AtenderVirtualTest produjo la excepción: 
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.</Message>
+              <StackTrace>    en Baz.Caja.Turnador.Logic.CjCRTurnosLogic.AtenderTurnoVirtual(String noEmpleado, CjCRTurno turno, CjCRCredential credential) en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\src\logic\CjCRTurnosLogic.cs:línea 130
+   en Baz.Caja.Turnador.Service.CjCRTurnosService.AtenderTurnoVirtual(String noEmpleado, CjCRTurno turno, CjCRCredential credential) en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\src\service\CjCRTurnosService.cs:línea 115
+   en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.AtenderVirtualTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 68
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+        <UnitTestResult executionId="012fb2c9-13f4-4540-96ca-4944a76b8bfb" parentExecutionId="77009696-5359-4626-a377-a8b0119b7da4" testId="7184f34c-99d0-b6e9-7b20-e35849e84b78" testName="AtenderVirtualTest" computerName="WXP_FGAMEZ" duration="00:00:00.0042876" startTime="2013-12-03T18:27:21.5969426-06:00" endTime="2013-12-03T18:27:21.5969426-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="77009696-5359-4626-a377-a8b0119b7da4" dataRowInfo="1" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>El método de prueba Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.AtenderVirtualTest produjo la excepción: 
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.</Message>
+              <StackTrace>    en Baz.Caja.Turnador.Logic.CjCRTurnosLogic.AtenderTurnoVirtual(String noEmpleado, CjCRTurno turno, CjCRCredential credential) en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\src\logic\CjCRTurnosLogic.cs:línea 130
+   en Baz.Caja.Turnador.Service.CjCRTurnosService.AtenderTurnoVirtual(String noEmpleado, CjCRTurno turno, CjCRCredential credential) en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\src\service\CjCRTurnosService.cs:línea 115
+   en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.AtenderVirtualTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 68
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+        <UnitTestResult executionId="ecc519ed-6144-47f5-a8d4-284f7063e23e" parentExecutionId="77009696-5359-4626-a377-a8b0119b7da4" testId="7184f34c-99d0-b6e9-7b20-e35849e84b78" testName="AtenderVirtualTest" computerName="WXP_FGAMEZ" duration="00:00:00.0039690" startTime="2013-12-03T18:27:21.5969426-06:00" endTime="2013-12-03T18:27:21.5969426-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="77009696-5359-4626-a377-a8b0119b7da4" dataRowInfo="2" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>El método de prueba Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.AtenderVirtualTest produjo la excepción: 
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.</Message>
+              <StackTrace>    en Baz.Caja.Turnador.Logic.CjCRTurnosLogic.AtenderTurnoVirtual(String noEmpleado, CjCRTurno turno, CjCRCredential credential) en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\src\logic\CjCRTurnosLogic.cs:línea 130
+   en Baz.Caja.Turnador.Service.CjCRTurnosService.AtenderTurnoVirtual(String noEmpleado, CjCRTurno turno, CjCRCredential credential) en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\src\service\CjCRTurnosService.cs:línea 115
+   en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.AtenderVirtualTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 68
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+      </InnerResults>
+    </UnitTestResult>
+    <UnitTestResult executionId="8ecfdb0b-fd12-4d8f-8b10-e3cef7341e31" testId="e062c1d9-c339-1cd0-0d22-cd14de58137e" testName="ApropiarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:04.7011295" startTime="2013-12-03T18:27:21.6125318-06:00" endTime="2013-12-03T18:27:26.3360594-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8ecfdb0b-fd12-4d8f-8b10-e3cef7341e31" resultType="DataDrivenTest">
+      <Counters error="0" failed="3" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+      <InnerResults>
+        <UnitTestResult executionId="31b0555c-621a-4d75-a800-f2f98b1e1dcf" parentExecutionId="8ecfdb0b-fd12-4d8f-8b10-e3cef7341e31" testId="e062c1d9-c339-1cd0-0d22-cd14de58137e" testName="ApropiarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:01.5954585" startTime="2013-12-03T18:27:21.6125318-06:00" endTime="2013-12-03T18:27:23.2182194-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8ecfdb0b-fd12-4d8f-8b10-e3cef7341e31" dataRowInfo="0" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>Error de Assert.AreEqual. Se esperaba &lt;True&gt;, pero es &lt;False&gt;. Turno no apropiado no atendido</Message>
+              <StackTrace>   en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.ApropiarTurnoTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 189
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+        <UnitTestResult executionId="09c10912-03a3-4565-a7f1-311ebb518eac" parentExecutionId="8ecfdb0b-fd12-4d8f-8b10-e3cef7341e31" testId="e062c1d9-c339-1cd0-0d22-cd14de58137e" testName="ApropiarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:01.5880508" startTime="2013-12-03T18:27:23.2182194-06:00" endTime="2013-12-03T18:27:24.7927286-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8ecfdb0b-fd12-4d8f-8b10-e3cef7341e31" dataRowInfo="1" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>Error de Assert.AreEqual. Se esperaba &lt;True&gt;, pero es &lt;False&gt;. Turno no apropiado no atendido</Message>
+              <StackTrace>   en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.ApropiarTurnoTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 189
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+        <UnitTestResult executionId="bcf16d75-11de-4579-8688-5a27d492d12b" parentExecutionId="8ecfdb0b-fd12-4d8f-8b10-e3cef7341e31" testId="e062c1d9-c339-1cd0-0d22-cd14de58137e" testName="ApropiarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:01.5158447" startTime="2013-12-03T18:27:24.7927286-06:00" endTime="2013-12-03T18:27:26.3360594-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8ecfdb0b-fd12-4d8f-8b10-e3cef7341e31" dataRowInfo="2" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>Error de Assert.AreEqual. Se esperaba &lt;True&gt;, pero es &lt;False&gt;. Turno no apropiado no atendido</Message>
+              <StackTrace>   en Baz.Caja.Turnador.Test.Dao.CjCTTurnosFlowAlternativeTest.ApropiarTurnoTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCTTurnosFlowAlternativeTest.cs:línea 189
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+      </InnerResults>
+    </UnitTestResult>
+  </Results>
+</TestRun>

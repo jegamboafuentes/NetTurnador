@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:aop="http://www.springframework.net/aop"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx"
+         xsi:schemaLocation="
+            http://www.springframework.net http://www.springframework.net/schema/objects/spring-objects.xsd
+            http://www.springframework.net/schema/aop http://www.springframework.net/schema/aop/spring-aop-1.1.xsd
+            http://www.springframework.net/schema/db http://www.springframework.net/schema/db/spring-database-1.1.xsd
+            http://www.springframework.net/schema/tx http://www.springframework.net/schema/tx/spring-tx-1.1.xsd">
+
+  <!-- Logic -->
+
+  <object id="TTurnadorLogic" type="Baz.Caja.Turnador.Test.Logic.CjCTTurnadorLogic, Baz.Caja.Turnador.Test" autowire="byType"/>
+  
+  <!-- Logic -->
+
+  
+  <!-- Support -->
+
+  <object id="TTurnoXmlMapper" type="Baz.Caja.Turnador.Test.Support.CjCTTurnoXmlMapper, Baz.Caja.Turnador.Test" autowire="byType"/>
+
+  <object id="TTurnoApropiadoXmlMapper" type="Baz.Caja.Turnador.Test.Support.CjCTTurnoApropiadoXmlMapper, Baz.Caja.Turnador.Test" autowire="byType"/>
+
+  <object id="TEmpleadoPoolXmlMapper" type="Baz.Caja.Turnador.Test.Support.CjCTEmpleadoPoolXmlMapper, Baz.Caja.Turnador.Test" autowire="byType"/>
+
+  <!-- Support -->
+
+  
+  <!-- Configuration -->
+
+  <object id="PropertiesTest" type="Spring.Objects.Factory.Config.VariablePlaceholderConfigurer, Spring.Core">
+    <property name="IgnoreUnresolvablePlaceholders" value="true"/>
+    <property name="VariableSources">
+      <list>
+        <object type="Spring.Objects.Factory.Config.PropertyFileVariableSource, Spring.Core">
+          <property name="Location" value="assembly://Baz.Caja.Turnador.Test/Baz.Caja.Turnador.Test.resource.properties/application-test.properties"/>
+        </object>
+      </list>
+    </property>
+  </object>
+
+  <object id="TTestConfig" type="Baz.Caja.Turnador.Test.Model.CjCTTestConfig, Baz.Caja.Turnador.Test">
+    <property name="TurnoDelay" value="${turno.delay}"/>
+  </object>
+  
+  <!-- Configuration -->
+  
+</objects>

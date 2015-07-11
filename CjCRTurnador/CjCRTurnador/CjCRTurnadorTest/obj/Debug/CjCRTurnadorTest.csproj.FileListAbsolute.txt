@@ -1,0 +1,44 @@
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\resource\datasource\TurnoApropiadoTest.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\resource\datasource\EmpleadoPoolTest.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\resource\datasource\TurnoTest.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador.Test.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador.Test.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Commons.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Aop.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Core.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Data.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Common.Logging.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Newtonsoft.Json.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Aop.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Aop.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Core.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Core.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Data.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Data.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Newtonsoft.Json.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Newtonsoft.Json.xml
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador_Accessor.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador_Accessor.pdb
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\obj\Debug\ResolveAssemblyReference.cache
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\obj\Debug\Baz.Caja.Turnador.Test.dll
+C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\obj\Debug\Baz.Caja.Turnador.Test.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\resource\datasource\TurnoApropiadoTest.xml
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\resource\datasource\EmpleadoPoolTest.xml
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\resource\datasource\TurnoTest.xml
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador.Test.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador.Test.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Commons.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Aop.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Core.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Spring.Data.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Common.Logging.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Newtonsoft.Json.Net35.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador_Accessor.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\bin\Debug\Baz.Caja.Turnador_Accessor.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\obj\Debug\ResolveAssemblyReference.cache
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\obj\Debug\Baz.Caja.Turnador.Test.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador\CjCRTurnador\CjCRTurnador\CjCRTurnadorTest\obj\Debug\Baz.Caja.Turnador.Test.pdb

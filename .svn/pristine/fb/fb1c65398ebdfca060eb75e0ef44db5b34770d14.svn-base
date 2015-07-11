@@ -1,0 +1,410 @@
+﻿
+var Logic_TurnosManager = _package('Logic.TurnosManager');
+
+Logic_TurnosManager.controlAsignados = {};
+Logic_TurnosManager.asignadoBuffer = null;
+Logic_TurnosManager.refAsignado = false;
+Logic_TurnosManager.controlHistorial = {};
+Logic_TurnosManager.historialBuffer = null;
+Logic_TurnosManager.refHistorial = false;
+Logic_TurnosManager.cont = 1;
+Logic_TurnosManager.sonido = new Array();
+Logic_TurnosManager.sonido1 = new Array();
+
+
+Logic_TurnosManager.init = function () {
+    var _this = Logic_TurnosManager;
+    var asigna = true, atiende = true;
+    var turnosClient = Client_TurnosClient;
+    var turnosNegocioAsignados;
+    var turnosNegocioAtendiendo;
+
+
+    setInterval(function () {
+
+        turnosClient.getTurnosAsignados(function () {
+            turnosNegocioAsignados = turnosClient.turnosNegocioAsignados;
+
+            turnosClient.getTurnosHistorial(function () {
+                turnosNegocioHistorial = turnosClient.turnosNegocioHistorial;
+
+                _this.distributeTurnosAsignados1(turnosNegocioHistorial);
+//                _this.distributeTurnosHistorial(turnosNegocioAsignados);
+
+                
+                _this.cont++;
+
+            }, null);
+        }, null);
+    }, _get('turnoClientTaskTime'));
+
+};
+
+Logic_TurnosManager.distributeTurnosAsignados1 = function (_unidadesNegocio) {
+    var defaultView = App_DefaultView;
+    var _this = Logic_TurnosManager;
+    var cont1 = 1;
+
+    defaultView.addTurnoNegocio(0, 0);
+//        defaultView.addEmpleado(0);
+    $.each(_unidadesNegocio, function (_idUnidadNegocio, _turnos) {
+        if (cont1 === _this.cont) {
+
+            _this.sonido[_this.cont] = _turnos[_turnos.length - 1].IdTurno;
+            if (_this.sonido[_this.cont] !== _this.sonido1[_this.cont]) {
+                _beep();
+                _this.sonido1[_this.cont] = _this.sonido[_this.cont];
+            }
+            defaultView.addTurnoNegocio(_turnos[0].IdUnidadNegocio, _turnos[_turnos.length - 1].IdTurno, _turnos[_turnos.length - 1].Empleado.PuntoAtencion, _turnos[_turnos.length - 1].Empleado.Nombre);
+//                        defaultView.addEmpleado(_turnos[_turnos.length - 1].Empleado);
+        }
+        cont1++;
+
+    });
+
+    if ((cont1 - 2) < _this.cont) { _this.cont = 0; }
+
+};
+
+
+Logic_TurnosManager.distributeTurnosHistorial = function (_unidadesNegocio) {
+    var defaultView = App_DefaultView;
+    $.each(_unidadesNegocio, function (_idUnidadNegocio, _turnos) {
+        defaultView.addTurnoUnidad(_turnos[0].IdUnidadNegocio, _turnos[0].IdTurno);
+
+    });
+};
+
+
+Logic_TurnosManager.distributeTurnosAsignados = function (_unidadesNegocio) {
+    var _this = Logic_TurnosManager;
+    var bAsignado;
+    var bPrincipal;
+    var idPrincipal;
+
+
+    _this.checkBuffer(_this.controlAsignados);
+
+    $.each(_unidadesNegocio, function (_idUnidadNegocio, _turnos) {
+        idPrincipal = _this.getIdPrincipal(_turnos);
+
+        $.each(_turnos, function (_i, _turno) {
+            principal = (_turno.IdTurno === idPrincipal);
+            bAsignado = _this.setAsignado(_turno, principal);
+
+            if (!bAsignado) {
+                _this.printTurno(_turno, 'turnoNoAsignado');
+            }
+        });
+    });
+
+
+    _this.currentAsignado();
+    _this.updateAsignado();
+};
+
+//DEPRECATED
+Logic_TurnosManager.distributeTurnosAtendiendo = function (_unidadesNegocio) {
+    var _this = Logic_TurnosManager;
+    var bAtendiendo;
+    var bPrincipal;
+    var idPrincipal;
+
+
+    _this.checkBuffer(_this.controlAtendiendo);
+
+    $.each(_unidadesNegocio, function (_idUnidadNegocio, _turnos) {
+        idPrincipal = _this.getIdPrincipal1(_turnos);
+
+        $.each(_turnos, function (_i, _turno) {
+            principal = (_turno.IdTurno === idPrincipal);
+            bAtendiendo = _this.setAtendiendo(_turno, principal);
+
+            if (!bAtendiendo) {
+                _this.printTurno(_turno, 'turnoNoAsignado');
+            }
+        });
+    });
+
+    _this.currentAtendiendo();
+    _this.updateAtendiendo();
+
+};
+
+Logic_TurnosManager.setAsignado = function (_turno, _bPrincipal) {
+    var _this = Logic_TurnosManager;
+    var control = _this.controlAsignados[_turno.IdTurno];
+
+    if (_isUndefined(control)) {
+        control = {
+            'select': _this.refAsignado,
+            'turno': _turno,
+            'solicitado': false,
+            'reference': true
+        };
+
+        _this.controlAsignados[_turno.IdTurno] = control;
+    }
+
+    if (!control.solicitado) {
+        control.reference = true;
+
+        return true;
+    } else {
+        control.reference = _bPrincipal;
+
+        return _bPrincipal;
+    }
+};
+
+/////////////
+
+Logic_TurnosManager.setAtendiendo = function (_turno, _bPrincipal) {
+    var _this = Logic_TurnosManager;
+    var control = _this.controlAtendiendo[_turno.IdTurno];
+
+    if (_isUndefined(control)) {
+        control = {
+            'select': _this.refAtendiendo,
+            'turno': _turno,
+            'solicitado': false,
+            'reference': true
+        };
+
+        _this.controlAtendiendo[_turno.IdTurno] = control;
+    }
+
+    if (!control.solicitado) {
+        control.reference = true;
+
+        return true;
+    } else {
+        control.reference = _bPrincipal;
+        return _bPrincipal;
+    }
+};
+
+
+
+
+
+Logic_TurnosManager.currentAsignado = function () {
+    var _this = Logic_TurnosManager;
+    var principal = null;
+    var current = null;
+
+    if (_this.changeReference(_this.controlAsignados, _this.refAsignado)) {
+        _this.refAsignado = !_this.refAsignado;
+    }
+
+    $.each(_this.controlAsignados, function (_idTurno, _control) {
+        if (!_control.solicitado) {
+            principal = (_isNull(principal) ? _control : principal);
+        }
+
+        if (_control.select === _this.refAsignado && _control.reference) {
+            if (_isNull(current)) {
+                _control.select = !_this.refAsignado;
+                current = _control;
+            }
+        }
+    });
+
+    current = (_isNull(principal) ? current : principal);
+    _this.asignadoBuffer = current;
+};
+
+////////////
+
+Logic_TurnosManager.currentAtendiendo = function () {
+    var _this = Logic_TurnosManager;
+    var principal = null;
+    var current = null;
+
+    if (_this.changeReference1(_this.controlAtendiendo, _this.refAtendiendo)) {
+        _this.refAtendiendo = !_this.refAtendiendo;
+    }
+    alert(_this.refAtendiendo);
+    $.each(_this.controlAtendiendo, function (_idTurno, _control) {
+        if (!_control.solicitado) {
+            principal = (_isNull(principal) ? _control : principal);
+        }
+
+        if (_control.select === _this.refAtendiendo && _control.reference) {
+            if (_isNull(current)) {
+                _control.select = !_this.refAtendiendo;
+
+                current = _control;
+            }
+        }
+    });
+
+    current = (_isNull(principal) ? current : principal);
+    _this.atendiendoBuffer = current;
+};
+
+//
+
+Logic_TurnosManager.updateAsignado = function () {
+    var _this = Logic_TurnosManager;
+    var defaultView = App_DefaultView;
+    var current = _this.asignadoBuffer;
+    var turno;
+
+
+    if (!_isUndefined(current) && !_isNull(current)) {
+        turno = current.turno;
+
+        if (!current.solicitado) {
+            current.solicitado = true;
+
+            _this.printTurno(turno, 'turnoSolicitado');
+
+            _beep();
+        }
+
+        defaultView.addTurnoNegocio(turno.IdUnidadNegocio, turno.IdTurno);
+        defaultView.addEmpleado(turno.Empleado);
+    } else {
+        defaultView.addTurnoNegocio(-1);
+        defaultView.addEmpleado();
+    }
+
+
+};
+
+/////////////////// 
+Logic_TurnosManager.updateAtendiendo = function () {
+    var _this = Logic_TurnosManager;
+    var defaultView = App_DefaultView;
+    var current = _this.atendiendoBuffer;
+    var turno;
+
+    if (!_isUndefined(current) && !_isNull(current)) {
+        turno = current.turno;
+
+        if (!current.solicitado) {
+            current.solicitado = true;
+
+            _this.printTurno(turno, 'turnoSolicitado');
+
+            //_beep();
+        }
+        defaultView.addTurnoUnidad(turno.IdUnidadNegocio, turno.IdTurno);
+        //defaultView.addTurnoUnidad(2, 2);
+        //defaultView.addEmpleado(turno.Empleado); 
+    } else {
+        defaultView.addTurnoUnidad(-1);
+        //defaultView.addEmpleado();
+    }
+};
+
+
+
+Logic_TurnosManager.getIdPrincipal = function (_turnos) {
+    var _this = Logic_TurnosManager;
+    var idPrincipal = 0;
+    var control;
+
+    $.each(_turnos, function (_i, _turno) {
+        control = _this.controlAsignados[_turno.IdTurno];
+
+        if (!_isUndefined(control) && !control.historico) {
+            idPrincipal = (_turno.IdTurno > idPrincipal ? _turno.IdTurno : idPrincipal);
+        }
+    });
+    //alert(idPrincipal);
+    return idPrincipal;
+};
+
+
+/////////
+
+Logic_TurnosManager.getIdPrincipal1 = function (_turnos) {
+    var _this = Logic_TurnosManager;
+    var idPrincipal = 0;
+    var control;
+
+    $.each(_turnos, function (_i, _turno) {
+        control = _this.controlAtendiendo[_turno.IdTurno];
+
+        if (!_isUndefined(control) && !control.historico) {
+            idPrincipal = (_turno.IdTurno > idPrincipal ? _turno.IdTurno : idPrincipal);
+        }
+    });
+
+    return idPrincipal;
+};
+
+
+
+
+Logic_TurnosManager.changeReference = function (_controlBuffer, _reference) {
+    var countSelected = 0;
+    var countControl = 0;
+    $.each(_controlBuffer, function (_idTurno, _control) {
+        if (_control.reference) {
+            countControl++;
+
+            if (_control.select !== _reference) {
+                countSelected++;
+            }
+        }
+    });
+
+    return (countSelected === countControl);
+};
+
+
+////////////////////// 
+Logic_TurnosManager.changeReference1 = function (_controlBuffer, _reference) {
+    var countSelected = 0;
+    var countControl1 = 0;
+
+    $.each(_controlBuffer, function (_idTurno, _control) {
+        if (_control.reference) {
+            countControl1++;
+            alert(_idTurno + " " + _control + " " + _control.reference);
+            if (_control.select !== _reference) {
+                countSelected++;
+            }
+        }
+    });
+
+    return (countSelected === countControl1);
+};
+
+
+
+
+
+Logic_TurnosManager.checkBuffer = function (_elements) {
+    if (!_isUndefined(_elements)) {
+        $.each(_elements, function (_i, _element) {
+            _element.reference = false;
+        });
+    }
+};
+
+Logic_TurnosManager.cleanBuffer = function (_elements) {
+    var _this = Logic_TurnosManager;
+
+    if (!_isUndefined(_elements)) {
+        $.each(_elements, function (_i, _element) {
+            if (_element.reference !== true) {
+                delete _elements[_i];
+            }
+        });
+    }
+};
+
+Logic_TurnosManager.printTurno = function (_turno, _idMessage) {
+    var negocioClient = Client_NegocioClient;
+    var message = _getMessage(_idMessage);
+    var unidadNegocio = negocioClient.unidadesNegocio[_turno.IdUnidadNegocio];
+
+    message = message.replace('{descripcion}', unidadNegocio.Descripcion);
+    message = message.replace('{idTurno}', _turno.IdTurno);
+
+    _console(message);
+};

@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+using Baz.Caja.Commons.Collection;
+using Baz.Caja.Commons.Model;
+using Baz.Caja.Turnador.Model;
+using Baz.Caja.Turnador.Dao;
+
+namespace Baz.Caja.Turnador.Logic
+{
+    public class CjCRNegocioLogic
+    {
+        public CjCRNegocioDao NegocioDao { get; set; }
+           
+        public List<CjCRUnidadNegocio> GetUnidadesNegocio(CjCRCredential credential)
+        {
+                CjCRDictionary<Int32, CjCRUnidadNegocio> unidadesNegocio =
+                NegocioDao.GetUnidadesNegocio(credential);
+                return new List<CjCRUnidadNegocio>(unidadesNegocio.Values);
+        }
+    }
+}

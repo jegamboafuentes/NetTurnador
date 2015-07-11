@@ -1,0 +1,5 @@
+﻿
+application.production=true
+
+application.adn.route=SOFTWARE\\ODBC\\ODBC.INI\\ADN
+application.adn.parameter=Server

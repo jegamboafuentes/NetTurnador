@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="fdcedf84-ae7f-42f1-abe8-2b68589a9df0" name="B859390@WXP_FGAMEZ 2013-12-03 12:29:57" runUser="BANCOAZTECA\B859390" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="de653c0a-5f0b-4dcc-aa03-7cc115229a2f">
+    <Description>Esta es la configuración de pruebas predeterminada para una ejecución de pruebas local.</Description>
+    <Deployment enabled="false" runDeploymentRoot="B859390_WXP_FGAMEZ 2013-12-03 12_29_57">
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Spring.Data.dll" />
+      <DeploymentItem filename="C:\gfb\workspaces\networkspace\CjCRBAZCommons\CjCRBAZCommons\bin\Debug\Baz.Caja.Commons.dll" />
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Spring.Aop.dll" />
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Spring.Core.dll" />
+      <DeploymentItem filename="C:\gfb\distribuciones\Spring.NET\bin\net\3.5\release\Common.Logging.dll" />
+      <DeploymentItem filename="C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnador\bin\Baz.Caja.Turnador.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-12-03T12:29:57.2254153-06:00" queuing="2013-12-03T12:29:57.2410167-06:00" start="2013-12-03T12:29:57.2566181-06:00" finish="2013-12-03T12:30:07.6471505-06:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="20" executed="20" passed="16" error="0" failed="4" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <DebugTrace>no configuration section &lt;common/logging&gt; found - suppressing logging output
+</DebugTrace>
+    </Output>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CaducarTurnosTest" storage="c:\gfb\workspaces\networkspace\cjcrturnador\cjcrturnadortest\bin\debug\baz.caja.turnador.test.dll" id="59582cb0-9642-a654-1d79-15e8731c0ab4">
+      <Execution id="0faea47a-2916-4a96-860d-f08cea769f04" />
+      <TestMethod codeBase="C:/gfb/workspaces/networkspace/CjCRTurnador/CjCRTurnadorTest/bin/Debug/Baz.Caja.Turnador.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest, Baz.Caja.Turnador.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CaducarTurnosTest" />
+      <DataSource connectionString="|DataDirectory|\resource\datasource\TurnoTest.xml" providerInvariantName="Microsoft.VisualStudio.TestTools.DataSource.XML" tableName="entrada" />
+    </UnitTest>
+    <UnitTest name="AtencionTurnoTest" storage="c:\gfb\workspaces\networkspace\cjcrturnador\cjcrturnadortest\bin\debug\baz.caja.turnador.test.dll" id="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d">
+      <Execution id="0c08bca4-5dee-47b0-8604-9b8b4fba9d1c" />
+      <TestMethod codeBase="C:/gfb/workspaces/networkspace/CjCRTurnador/CjCRTurnadorTest/bin/Debug/Baz.Caja.Turnador.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest, Baz.Caja.Turnador.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="AtencionTurnoTest" />
+      <DataSource connectionString="|DataDirectory|\resource\datasource\TurnoTest.xml" providerInvariantName="Microsoft.VisualStudio.TestTools.DataSource.XML" tableName="entrada" />
+    </UnitTest>
+    <UnitTest name="GetTurnosAsignadosTest" storage="c:\gfb\workspaces\networkspace\cjcrturnador\cjcrturnadortest\bin\debug\baz.caja.turnador.test.dll" id="56e7d02c-ae8a-9bd0-33b0-696c7689cb4f">
+      <Execution id="1b266b3b-fbbc-41b2-bc03-22d3ec44abe2" />
+      <TestMethod codeBase="C:/gfb/workspaces/networkspace/CjCRTurnador/CjCRTurnadorTest/bin/Debug/Baz.Caja.Turnador.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest, Baz.Caja.Turnador.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetTurnosAsignadosTest" />
+      <DataSource connectionString="|DataDirectory|\resource\datasource\TurnoTest.xml" providerInvariantName="Microsoft.VisualStudio.TestTools.DataSource.XML" tableName="entrada" />
+    </UnitTest>
+    <UnitTest name="GetTurnosEstadoTest" storage="c:\gfb\workspaces\networkspace\cjcrturnador\cjcrturnadortest\bin\debug\baz.caja.turnador.test.dll" id="452928e3-ecab-d154-4cbd-890e72c1d49c">
+      <Execution id="8c7de747-b3a8-4d6b-aed0-7d901258bef9" />
+      <TestMethod codeBase="C:/gfb/workspaces/networkspace/CjCRTurnador/CjCRTurnadorTest/bin/Debug/Baz.Caja.Turnador.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest, Baz.Caja.Turnador.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetTurnosEstadoTest" />
+      <DataSource connectionString="|DataDirectory|\resource\datasource\TurnoTest.xml" providerInvariantName="Microsoft.VisualStudio.TestTools.DataSource.XML" tableName="entrada" />
+    </UnitTest>
+    <UnitTest name="GenerarTurnoTest" storage="c:\gfb\workspaces\networkspace\cjcrturnador\cjcrturnadortest\bin\debug\baz.caja.turnador.test.dll" id="44dc0058-a3ca-280a-0339-87e76929ccba">
+      <Execution id="e2a8c2e7-4ebd-4754-bca1-1a6556e96499" />
+      <TestMethod codeBase="C:/gfb/workspaces/networkspace/CjCRTurnador/CjCRTurnadorTest/bin/Debug/Baz.Caja.Turnador.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest, Baz.Caja.Turnador.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GenerarTurnoTest" />
+      <DataSource connectionString="|DataDirectory|\resource\datasource\TurnoTest.xml" providerInvariantName="Microsoft.VisualStudio.TestTools.DataSource.XML" tableName="entrada" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Resultados que no están en la lista" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Todos los resultados cargados" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="44dc0058-a3ca-280a-0339-87e76929ccba" executionId="e2a8c2e7-4ebd-4754-bca1-1a6556e96499" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="452928e3-ecab-d154-4cbd-890e72c1d49c" executionId="8c7de747-b3a8-4d6b-aed0-7d901258bef9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="56e7d02c-ae8a-9bd0-33b0-696c7689cb4f" executionId="1b266b3b-fbbc-41b2-bc03-22d3ec44abe2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="59582cb0-9642-a654-1d79-15e8731c0ab4" executionId="0faea47a-2916-4a96-860d-f08cea769f04" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d" executionId="0c08bca4-5dee-47b0-8604-9b8b4fba9d1c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="e2a8c2e7-4ebd-4754-bca1-1a6556e96499" testId="44dc0058-a3ca-280a-0339-87e76929ccba" testName="GenerarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:00.1464954" startTime="2013-12-03T12:29:57.2566181-06:00" endTime="2013-12-03T12:29:58.2083035-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e2a8c2e7-4ebd-4754-bca1-1a6556e96499" resultType="DataDrivenTest">
+      <Counters error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="3" completed="0" inProgress="0" pending="0" />
+      <InnerResults>
+        <UnitTestResult executionId="dc9c7abe-3e61-4704-9166-ed793a3d5dff" parentExecutionId="e2a8c2e7-4ebd-4754-bca1-1a6556e96499" testId="44dc0058-a3ca-280a-0339-87e76929ccba" testName="GenerarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:00.0799341" startTime="2013-12-03T12:29:58.0522895-06:00" endTime="2013-12-03T12:29:58.1302965-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e2a8c2e7-4ebd-4754-bca1-1a6556e96499" dataRowInfo="0" resultType="DataDrivenDataRow" />
+        <UnitTestResult executionId="7bff6755-7159-4960-8bbc-055d5ed65843" parentExecutionId="e2a8c2e7-4ebd-4754-bca1-1a6556e96499" testId="44dc0058-a3ca-280a-0339-87e76929ccba" testName="GenerarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:00.0103520" startTime="2013-12-03T12:29:58.1302965-06:00" endTime="2013-12-03T12:29:58.1458979-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e2a8c2e7-4ebd-4754-bca1-1a6556e96499" dataRowInfo="1" resultType="DataDrivenDataRow" />
+        <UnitTestResult executionId="a166c8e3-28ae-4c3c-bdb0-c05da87c4f9d" parentExecutionId="e2a8c2e7-4ebd-4754-bca1-1a6556e96499" testId="44dc0058-a3ca-280a-0339-87e76929ccba" testName="GenerarTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:00.0411308" startTime="2013-12-03T12:29:58.1458979-06:00" endTime="2013-12-03T12:29:58.1771007-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e2a8c2e7-4ebd-4754-bca1-1a6556e96499" dataRowInfo="2" resultType="DataDrivenDataRow" />
+      </InnerResults>
+    </UnitTestResult>
+    <UnitTestResult executionId="8c7de747-b3a8-4d6b-aed0-7d901258bef9" testId="452928e3-ecab-d154-4cbd-890e72c1d49c" testName="GetTurnosEstadoTest" computerName="WXP_FGAMEZ" duration="00:00:00.0319473" startTime="2013-12-03T12:29:58.2083035-06:00" endTime="2013-12-03T12:29:58.2395063-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8c7de747-b3a8-4d6b-aed0-7d901258bef9" resultType="DataDrivenTest">
+      <Counters error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="3" completed="0" inProgress="0" pending="0" />
+      <InnerResults>
+        <UnitTestResult executionId="4103750b-5b25-4b1c-8070-2f8874e6bd2a" parentExecutionId="8c7de747-b3a8-4d6b-aed0-7d901258bef9" testId="452928e3-ecab-d154-4cbd-890e72c1d49c" testName="GetTurnosEstadoTest" computerName="WXP_FGAMEZ" duration="00:00:00.0122862" startTime="2013-12-03T12:29:58.2083035-06:00" endTime="2013-12-03T12:29:58.2239049-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8c7de747-b3a8-4d6b-aed0-7d901258bef9" dataRowInfo="0" resultType="DataDrivenDataRow" />
+        <UnitTestResult executionId="6a01c243-45f3-4403-9cfb-1cf3d65f9ef7" parentExecutionId="8c7de747-b3a8-4d6b-aed0-7d901258bef9" testId="452928e3-ecab-d154-4cbd-890e72c1d49c" testName="GetTurnosEstadoTest" computerName="WXP_FGAMEZ" duration="00:00:00.0087627" startTime="2013-12-03T12:29:58.2239049-06:00" endTime="2013-12-03T12:29:58.2239049-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8c7de747-b3a8-4d6b-aed0-7d901258bef9" dataRowInfo="1" resultType="DataDrivenDataRow" />
+        <UnitTestResult executionId="1af6ab45-495b-4f45-8192-75d3b8e0ec10" parentExecutionId="8c7de747-b3a8-4d6b-aed0-7d901258bef9" testId="452928e3-ecab-d154-4cbd-890e72c1d49c" testName="GetTurnosEstadoTest" computerName="WXP_FGAMEZ" duration="00:00:00.0095548" startTime="2013-12-03T12:29:58.2239049-06:00" endTime="2013-12-03T12:29:58.2395063-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8c7de747-b3a8-4d6b-aed0-7d901258bef9" dataRowInfo="2" resultType="DataDrivenDataRow" />
+      </InnerResults>
+    </UnitTestResult>
+    <UnitTestResult executionId="1b266b3b-fbbc-41b2-bc03-22d3ec44abe2" testId="56e7d02c-ae8a-9bd0-33b0-696c7689cb4f" testName="GetTurnosAsignadosTest" computerName="WXP_FGAMEZ" duration="00:00:04.5702618" startTime="2013-12-03T12:29:58.2395063-06:00" endTime="2013-12-03T12:30:02.8263179-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1b266b3b-fbbc-41b2-bc03-22d3ec44abe2" resultType="DataDrivenTest">
+      <Counters error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="3" completed="0" inProgress="0" pending="0" />
+      <InnerResults>
+        <UnitTestResult executionId="ac1ec5da-4281-4633-82a3-9e237ebd11d7" parentExecutionId="1b266b3b-fbbc-41b2-bc03-22d3ec44abe2" testId="56e7d02c-ae8a-9bd0-33b0-696c7689cb4f" testName="GetTurnosAsignadosTest" computerName="WXP_FGAMEZ" duration="00:00:01.5370035" startTime="2013-12-03T12:29:58.2551077-06:00" endTime="2013-12-03T12:29:59.7840449-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1b266b3b-fbbc-41b2-bc03-22d3ec44abe2" dataRowInfo="0" resultType="DataDrivenDataRow" />
+        <UnitTestResult executionId="295a86ed-c936-480d-853c-b2efcc18f8b2" parentExecutionId="1b266b3b-fbbc-41b2-bc03-22d3ec44abe2" testId="56e7d02c-ae8a-9bd0-33b0-696c7689cb4f" testName="GetTurnosAsignadosTest" computerName="WXP_FGAMEZ" duration="00:00:01.5271426" startTime="2013-12-03T12:29:59.7840449-06:00" endTime="2013-12-03T12:30:01.3129821-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1b266b3b-fbbc-41b2-bc03-22d3ec44abe2" dataRowInfo="1" resultType="DataDrivenDataRow" />
+        <UnitTestResult executionId="0d4a5d0e-8a8c-46ed-b609-b7e103082b77" parentExecutionId="1b266b3b-fbbc-41b2-bc03-22d3ec44abe2" testId="56e7d02c-ae8a-9bd0-33b0-696c7689cb4f" testName="GetTurnosAsignadosTest" computerName="WXP_FGAMEZ" duration="00:00:01.5047300" startTime="2013-12-03T12:30:01.3129821-06:00" endTime="2013-12-03T12:30:02.8263179-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1b266b3b-fbbc-41b2-bc03-22d3ec44abe2" dataRowInfo="2" resultType="DataDrivenDataRow" />
+      </InnerResults>
+    </UnitTestResult>
+    <UnitTestResult executionId="0faea47a-2916-4a96-860d-f08cea769f04" testId="59582cb0-9642-a654-1d79-15e8731c0ab4" testName="CaducarTurnosTest" computerName="WXP_FGAMEZ" duration="00:00:00.0339481" startTime="2013-12-03T12:30:02.8419193-06:00" endTime="2013-12-03T12:30:02.8731221-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0faea47a-2916-4a96-860d-f08cea769f04" resultType="DataDrivenTest">
+      <Counters error="0" failed="3" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+      <InnerResults>
+        <UnitTestResult executionId="bdafd9f2-741a-4b6c-9620-2ef4f03e75a6" parentExecutionId="0faea47a-2916-4a96-860d-f08cea769f04" testId="59582cb0-9642-a654-1d79-15e8731c0ab4" testName="CaducarTurnosTest" computerName="WXP_FGAMEZ" duration="00:00:00.0252770" startTime="2013-12-03T12:30:02.8419193-06:00" endTime="2013-12-03T12:30:02.8575207-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0faea47a-2916-4a96-860d-f08cea769f04" dataRowInfo="0" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>El método de prueba Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest.CaducarTurnosTest produjo la excepción: 
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.</Message>
+              <StackTrace>    en Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest.CaducarTurnosTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCRTurnosFlowTest.cs:línea 176
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+        <UnitTestResult executionId="ba628d46-d819-4e9d-bc08-fe2d4f60a23f" parentExecutionId="0faea47a-2916-4a96-860d-f08cea769f04" testId="59582cb0-9642-a654-1d79-15e8731c0ab4" testName="CaducarTurnosTest" computerName="WXP_FGAMEZ" duration="00:00:00.0043129" startTime="2013-12-03T12:30:02.8575207-06:00" endTime="2013-12-03T12:30:02.8731221-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0faea47a-2916-4a96-860d-f08cea769f04" dataRowInfo="1" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>El método de prueba Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest.CaducarTurnosTest produjo la excepción: 
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.</Message>
+              <StackTrace>    en Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest.CaducarTurnosTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCRTurnosFlowTest.cs:línea 176
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+        <UnitTestResult executionId="1d203be4-a194-447d-ad8a-0c0d49ac9dd7" parentExecutionId="0faea47a-2916-4a96-860d-f08cea769f04" testId="59582cb0-9642-a654-1d79-15e8731c0ab4" testName="CaducarTurnosTest" computerName="WXP_FGAMEZ" duration="00:00:00.0025801" startTime="2013-12-03T12:30:02.8731221-06:00" endTime="2013-12-03T12:30:02.8731221-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0faea47a-2916-4a96-860d-f08cea769f04" dataRowInfo="2" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>El método de prueba Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest.CaducarTurnosTest produjo la excepción: 
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.</Message>
+              <StackTrace>    en Baz.Caja.Turnador.Test.Dao.CjCRTurnosFlowTest.CaducarTurnosTest() en C:\gfb\workspaces\networkspace\CjCRTurnador\CjCRTurnadorTest\test\logic\CjCRTurnosFlowTest.cs:línea 176
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+      </InnerResults>
+    </UnitTestResult>
+    <UnitTestResult executionId="0c08bca4-5dee-47b0-8604-9b8b4fba9d1c" testId="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d" testName="AtencionTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:04.7324649" startTime="2013-12-03T12:30:02.8887235-06:00" endTime="2013-12-03T12:30:07.6159477-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c08bca4-5dee-47b0-8604-9b8b4fba9d1c" resultType="DataDrivenTest">
+      <Counters error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="3" completed="0" inProgress="0" pending="0" />
+      <InnerResults>
+        <UnitTestResult executionId="3992a988-7251-42d4-a66c-7dad77914111" parentExecutionId="0c08bca4-5dee-47b0-8604-9b8b4fba9d1c" testId="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d" testName="AtencionTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:01.5596320" startTime="2013-12-03T12:30:02.8887235-06:00" endTime="2013-12-03T12:30:04.4488635-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c08bca4-5dee-47b0-8604-9b8b4fba9d1c" dataRowInfo="0" resultType="DataDrivenDataRow" />
+        <UnitTestResult executionId="e5eff323-96b3-41ce-a024-f81c09ba8c1c" parentExecutionId="0c08bca4-5dee-47b0-8604-9b8b4fba9d1c" testId="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d" testName="AtencionTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:01.5900554" startTime="2013-12-03T12:30:04.4488635-06:00" endTime="2013-12-03T12:30:06.0246049-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c08bca4-5dee-47b0-8604-9b8b4fba9d1c" dataRowInfo="1" resultType="DataDrivenDataRow" />
+        <UnitTestResult executionId="1f08b6f0-c292-4181-baef-33fc6fa16a1d" parentExecutionId="0c08bca4-5dee-47b0-8604-9b8b4fba9d1c" testId="b0a00b53-1f72-cb63-3735-5ce47cf5bb4d" testName="AtencionTurnoTest" computerName="WXP_FGAMEZ" duration="00:00:01.5803658" startTime="2013-12-03T12:30:06.0246049-06:00" endTime="2013-12-03T12:30:07.6159477-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c08bca4-5dee-47b0-8604-9b8b4fba9d1c" dataRowInfo="2" resultType="DataDrivenDataRow" />
+      </InnerResults>
+    </UnitTestResult>
+  </Results>
+</TestRun>

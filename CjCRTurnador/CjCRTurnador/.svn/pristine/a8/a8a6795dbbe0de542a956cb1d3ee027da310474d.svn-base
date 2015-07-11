@@ -1,0 +1,57 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+using Baz.Caja.Commons.Collection;
+using Baz.Caja.Commons.Model;
+using Baz.Caja.Commons.Util;
+using Baz.Caja.Turnador.Logic;
+using Baz.Caja.Turnador.Model;
+using Baz.Caja.Turnador.Validation;
+
+
+namespace Baz.Caja.Turnador.Service
+{
+    public class CjCRPoolService : CjCRServiceBase
+    {
+        public CjCRPoolLogic PoolLogic { get; set; }
+
+        public CjCRSummary SetDisponible( String noEmpleado,
+            CjCRCredential credential)
+        {
+            return PoolLogic.SetDisponible(noEmpleado, credential);
+        }
+
+        public CjCRSummary SetNoDisponible(String noEmpleado,
+            CjCRCredential credential)
+        {
+
+            return PoolLogic.SetNoDisponible(noEmpleado, credential); ;
+        }
+
+
+        public CjCRUnidadEmpleado MuestraUnidad(String noEmpleado, CjCRCredential credential) 
+        {
+
+            return PoolLogic.GetUnidadEmpleado(noEmpleado,credential);
+        }
+
+        public CjCRSummary CambiaUnidad(String noEmpleado, String unidadNegocioParam, CjCRCredential credential)
+        {
+            int unidadNegocio = CjCRParseUtils.ToInt32(unidadNegocioParam);
+            return PoolLogic.UpdateUnidadEmpleado(noEmpleado, unidadNegocio, credential);
+        }
+
+        public CjCRSummary ConsultaCapacidad(String noEmpleado, CjCRCredential credential)
+        {
+            return PoolLogic.ConsultaCapacidad(noEmpleado, credential);
+        }
+
+        public CjCRSummary CambiaPuntoAtencion(String noEmpleado, String puntoatencion, CjCRCredential credential)
+        {
+            return PoolLogic.CambiaPuntoAtencion(noEmpleado, puntoatencion, credential);
+        }
+    
+    }
+}

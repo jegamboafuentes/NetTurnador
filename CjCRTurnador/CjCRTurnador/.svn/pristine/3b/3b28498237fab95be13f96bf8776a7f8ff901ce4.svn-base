@@ -1,0 +1,98 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using System.Text;
+using System.Web;
+
+using Baz.Caja.Commons.Collection;
+using Baz.Caja.Commons.Model;
+using Baz.Caja.Commons.Service;
+using Baz.Caja.Turnador.Model;
+using Baz.Caja.Turnador.Service;
+using Baz.Caja.Turnador.Service.Ioc;
+using Baz.Caja.Turnador.Util;
+
+namespace Baz.Caja.Servicios
+{
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+
+    public class CjCRTurnosService : CjCRServiceIoC<CjCRTurnosServiceIoC>, CjCRITurnosService
+    {
+        public CjCRCualidadList Util = new CjCRCualidadList();
+        public CjCRTurno GenerarTurno(CjCRTurno turno)
+        {
+            return Service.GenerarTurno(turno);
+        }
+
+        public CjCRTurno GetTurno(String fecha,String idUnidadNegocio, String idTurno)
+        {
+            return Service.GetTurno(fecha,idUnidadNegocio, idTurno);
+        }
+
+        public CjCRTurno GetTurnoAsignado(String fecha, String idUnidadNegocio, String noEmpleado)
+        {
+            return Service.GetTurnoAsignado(fecha, idUnidadNegocio, noEmpleado);
+        }
+
+        public CjCRDictionary<Int32, List<CjCRTurno>> GetTurnosAsignados(String fecha)
+        {
+            return Service.GetTurnosAsignados(fecha);
+        }
+
+        /// Servicio de turnos en atención.
+        public CjCRDictionary<Int32, List<CjCRTurno>> GetTurnosAtendiendo(String fecha)
+        {
+            return Service.GetTurnosAtendiendo(fecha);
+        }
+
+        public CjCRDictionary<Int32, List<CjCRTurno>> GetTurnosHistorial(String fecha)
+        {
+            return Service.GetTurnosHistorial(fecha);
+        }
+
+        public CjCRSummary CompletarTurnos()
+        {
+            return Service.CompletarTurnos();
+        }
+
+        public CjCRSummary PosponerTurno(CjCRTurno turno)
+        {
+            return Service.PosponerTurno(turno);
+        }
+
+        public CjCRSummary CancelarTurno(CjCRTurno turno)
+        {
+            return Service.CancelarTurno(turno);
+        }
+
+        public CjCRSummary AtenderTurno(String noEmpleado, CjCRTurno turno)
+        {    
+            return Service.AtenderTurno(noEmpleado, turno);
+        }
+
+        public CjCRSummaryTurno AtenderTurnoVirtual(String idUnidadNegocio, String noEmpleado)
+        {
+            return Service.AtenderTurnoVirtual(idUnidadNegocio, noEmpleado);
+        }
+
+        public CjCRSummary ApropiarTurno(String noEmpleado, CjCRTurno turno)
+        {
+            return Service.ApropiarTurno(noEmpleado, turno);
+        }
+
+        public CjCRSummary FinalizarTurno(String noEmpleado, CjCRTurno turno)
+        {
+            return Service.FinalizarTurno(noEmpleado, turno);
+        }
+
+        public CjCRTurno GetTurnoEmpleado(String fecha, String noEmpleado)
+        {
+            return Service.GetTurnoEmpleado(fecha, noEmpleado);
+        }
+    }
+}

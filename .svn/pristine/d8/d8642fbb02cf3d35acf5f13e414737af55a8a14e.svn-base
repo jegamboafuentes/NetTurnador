@@ -1,0 +1,154 @@
+﻿
+html 
+{
+    overflow: hidden;
+}
+        
+body 
+{
+    line-height: normal;            
+}
+
+@font-face {
+	font-family:"HelvBold";
+	src: url('../../font/HelveticaLTStd-Bold.ttf');
+}
+
+@font-face {
+	font-family:"HelvLight";
+	src: url('../../font/HelveticaLTStd-Light.ttf');
+}
+
+@font-face {
+	font-family:"HelvRoman";
+	src: url('../../font/HelveticaLTStd-Roman.ttf');
+}
+        
+.detailCenter 
+{
+    position: absolute;
+        top:  40%; 
+        left: 14.5%;  
+        color: white; 
+        font-size: 900%; 
+    margin: auto;
+    text-align: center;
+}
+
+        
+.mensajeDetail 
+{
+    font-family:HelvLight;
+    font-size: 60px;
+    color: White;
+    margin-left: 10%;
+    margin-top: 8%;
+}
+        
+
+.negocioImage 
+{
+    width: 140%;
+    margin-top: -7%;
+    margin-left: -15%;
+}
+
+.turnoNumber 
+{
+    color:White;
+    font-family:HelvRoman;
+    font-size: 250px;
+    text-align: center;
+}
+        
+.turnoTitle 
+{
+    font-family:HelvLight;
+    font-size: 115px;
+    text-align: center;
+    font-weight: lighter;
+    padding: 0px;
+    color: White;
+}
+
+.turnoNext 
+{
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+
+.datosDetail 
+{
+    font-family:HelvBold;
+    font-size: 60px;
+    color: #378266;
+    font-weight: bold;
+}
+
+        
+
+.panelTurno
+{   
+    margin-top: -20%; 
+}
+
+#izquierda
+{
+        position:absolute;
+        height:100%;
+        width:50%;
+        left:0%;
+        background-color:White;   
+}
+#derecha
+{
+        position:absolute;
+        right:0%;
+        height:100%;
+        width:50%;
+        background: #d3dae1; /* Old browsers */
+        background: -moz-linear-gradient(top,  #d3dae1 0%, #e5eaee 50%, #d1d8e0 96%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d3dae1), color-stop(50%,#e5eaee), color-stop(96%,#d1d8e0)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #d3dae1 0%,#e5eaee 50%,#d1d8e0 96%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  #d3dae1 0%,#e5eaee 50%,#d1d8e0 96%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  #d3dae1 0%,#e5eaee 50%,#d1d8e0 96%); /* IE10+ */
+        background: linear-gradient(to bottom,  #d3dae1 0%,#e5eaee 50%,#d1d8e0 96%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3dae1', endColorstr='#d1d8e0',GradientType=0 ); /* IE6-9 */
+}
+#imagen
+{
+    position: absolute;
+    top:  30%; 
+    right: 20%;  
+}
+
+#mensaje
+{
+    position: absolute;
+    top:  85%; 
+    left: -257px;  
+}
+
+#lblAtendiendo
+{
+        font-family:HelvLight;
+        position: absolute;
+        top:  -119%; 
+        left: 7%;  
+        color: white; 
+        font-size: 60px; 
+        
+}
+
+       

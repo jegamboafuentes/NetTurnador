@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<entradas>
+  <entrada>
+    <expected>true</expected>
+    <idOrigen>1</idOrigen>
+    <idUnidadNegocio>1</idUnidadNegocio>
+    <noEmpleado>614520</noEmpleado>
+    <estado>4</estado>
+  </entrada>
+  <entrada>
+    <expected>true</expected>
+    <idOrigen>2</idOrigen>
+    <idUnidadNegocio>4</idUnidadNegocio>
+    <noEmpleado>111111</noEmpleado>
+    <estado>5</estado>
+  </entrada>
+  <entrada>
+    <expected>true</expected>
+    <idOrigen>1</idOrigen>
+    <idUnidadNegocio>5</idUnidadNegocio>
+    <noEmpleado>222222</noEmpleado>
+    <estado>6</estado>
+  </entrada>
+</entradas>

@@ -1,0 +1,20 @@
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador 1.0\CjCRTurnadorDisplay\CjCRTurnadorDisplay\obj\Debug\ResolveAssemblyReference.cache
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador 1.0\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Baz.Caja.Turnador.Display.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador 1.0\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Baz.Caja.Turnador.Display.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador 1.0\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Spring.Data.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador 1.0\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Common.Logging.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador 1.0\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Spring.Core.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador 1.0\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Spring.Aop.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador 1.0\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Spring.Data.xml
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador 1.0\CjCRTurnadorDisplay\CjCRTurnadorDisplay\obj\Debug\Baz.Caja.Turnador.Display.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Turnador 1.0\CjCRTurnadorDisplay\CjCRTurnadorDisplay\obj\Debug\Baz.Caja.Turnador.Display.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Display turnador versiones\2.0    Display en miramontes nuevo diseño\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Baz.Caja.Turnador.Display.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Display turnador versiones\2.0    Display en miramontes nuevo diseño\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Baz.Caja.Turnador.Display.pdb
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Display turnador versiones\2.0    Display en miramontes nuevo diseño\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Spring.Data.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Display turnador versiones\2.0    Display en miramontes nuevo diseño\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Common.Logging.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Display turnador versiones\2.0    Display en miramontes nuevo diseño\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Spring.Core.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Display turnador versiones\2.0    Display en miramontes nuevo diseño\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Spring.Aop.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Display turnador versiones\2.0    Display en miramontes nuevo diseño\CjCRTurnadorDisplay\CjCRTurnadorDisplay\bin\Spring.Data.xml
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Display turnador versiones\2.0    Display en miramontes nuevo diseño\CjCRTurnadorDisplay\CjCRTurnadorDisplay\obj\Debug\CjCRTurnadorDisplay.csprojResolveAssemblyReference.cache
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Display turnador versiones\2.0    Display en miramontes nuevo diseño\CjCRTurnadorDisplay\CjCRTurnadorDisplay\obj\Debug\Baz.Caja.Turnador.Display.dll
+E:\Users\B993241\Documents\Visual Studio 2010\Projects\Display turnador versiones\2.0    Display en miramontes nuevo diseño\CjCRTurnadorDisplay\CjCRTurnadorDisplay\obj\Debug\Baz.Caja.Turnador.Display.pdb

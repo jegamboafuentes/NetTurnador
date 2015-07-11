@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:aop="http://www.springframework.net/aop"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx"
+         xsi:schemaLocation="
+            http://www.springframework.net http://www.springframework.net/schema/objects/spring-objects.xsd
+            http://www.springframework.net/schema/aop http://www.springframework.net/schema/aop/spring-aop-1.1.xsd
+            http://www.springframework.net/schema/db http://www.springframework.net/schema/db/spring-database-1.1.xsd
+            http://www.springframework.net/schema/tx http://www.springframework.net/schema/tx/spring-tx-1.1.xsd">
+ 
+  <!-- Services -->
+
+  <object id="NegocioServiceIoC" type="Baz.Caja.Turnador.Service.Ioc.CjCRNegocioServiceIoC, Baz.Caja.Turnador" autowire="byType"/>
+
+  <object id="PoolServiceIoC" type="Baz.Caja.Turnador.Service.Ioc.CjCRPoolServiceIoC, Baz.Caja.Turnador" autowire="byType"/>
+
+  <object id="TurnosServiceIoC" type="Baz.Caja.Turnador.Service.Ioc.CjCRTurnosServiceIoC, Baz.Caja.Turnador" autowire="byType"/>
+
+  <object id="TurnadorServiceIoC" type="Baz.Caja.Turnador.Service.Ioc.CjCRTurnadorServiceIoC, Baz.Caja.Turnador" autowire="byType"/>
+
+  <object id="NegocioService" type="Baz.Caja.Turnador.Service.CjCRNegocioService, Baz.Caja.Turnador" autowire="byType"/>
+
+  <object id="PoolService" type="Baz.Caja.Turnador.Service.CjCRPoolService, Baz.Caja.Turnador" autowire="byType"/>
+  
+  <object id="TurnosService" type="Baz.Caja.Turnador.Service.CjCRTurnosService, Baz.Caja.Turnador" autowire="byType"/>
+
+  <object id="TurnadorService" type="Baz.Caja.Turnador.Service.CjCRTurnadorService, Baz.Caja.Turnador" autowire="byType"/>
+
+  <!--<object id="ControladorServicios" type="Baz.Caja.Servicios.Logica.ControladorServicios, Baz.Caja.Servicios.Logica" autowire="byType"/>-->
+
+  <!-- Services -->
+
+  
+  <!-- Validation -->
+  
+  <object id="TurnoValidator" type="Baz.Caja.Turnador.Validation.CjCRTurnoValidator, Baz.Caja.Turnador" autowire="byType"/>
+  
+  <object id="ResourceCredentialValidator" type="Baz.Caja.Turnador.Validation.CjCRResourceCredentialValidator, Baz.Caja.Turnador" autowire="byType"/>
+  
+  <!-- Validation -->
+  
+  
+  <!-- Logic -->
+
+  <object id="NegocioLogic" type="Baz.Caja.Turnador.Logic.CjCRNegocioLogic, Baz.Caja.Turnador" autowire="byType"/>
+
+  <object id="PoolLogic" type="Baz.Caja.Turnador.Logic.CjCRPoolLogic, Baz.Caja.Turnador" autowire="byName"/>
+  
+  <object id="TurnosLogic" type="Baz.Caja.Turnador.Logic.CjCRTurnosLogic, Baz.Caja.Turnador" autowire="byName"/>
+
+  <object id="TurnadorLogic" type="Baz.Caja.Turnador.Logic.CjCRTurnadorLogic, Baz.Caja.Turnador" autowire="byName"/>
+
+  <object id="TurnosTask" type="Baz.Caja.Turnador.Logic.CjCRTurnosTask, Baz.Caja.Turnador" autowire="byType"/>
+  
+  <object id="CompletarTurnosTask" type="Baz.Caja.Turnador.Logic.CjCRCompletarTurnosTask, Baz.Caja.Turnador" autowire="byType" singleton="false"/>
+  
+  <object id="CaducarTurnosTask" type="Baz.Caja.Turnador.Logic.CjCRCaducarTurnosTask, Baz.Caja.Turnador" autowire="byType" singleton="false"/>
+
+  <!-- Logic -->
+
+  
+  <!-- Support -->
+
+  <object id="AppConfig" type="Baz.Caja.Turnador.Support.CjCRAppConfig, Baz.Caja.Turnador" init-method="Init" autowire="byName">
+    <property name="Production" value="${application.production}"/>
+  </object>
+
+  <object id="TurnadorSummaryFactory" type="Baz.Caja.Turnador.Support.CjCRTurnadorSummaryFactory, Baz.Caja.Turnador" autowire="byType"/>
+  
+  <object id="EmpleadoPoolFactory" type="Baz.Caja.Turnador.Support.CjCREmpleadoPoolFactory, Baz.Caja.Turnador" autowire="byType"/>
+
+  <object id="CredentialExtract" type="Baz.Caja.Turnador.Support.CjCRCredentialExtract, Baz.Caja.Turnador" autowire="byType"/>
+
+  <object id="EstadosTurnoPool" type="Baz.Caja.Commons.Support.CjCRStateMachinePool, Baz.Caja.Commons" autowire="byType"/>
+
+  <object id="EstadosAtencionPool" type="Baz.Caja.Commons.Support.CjCRStateMachinePool, Baz.Caja.Commons" autowire="byType"/>
+  
+  <!-- Support -->
+
+
+  <!-- Transaction -->
+
+  
+  <!-- Transaction -->
+  
+  
+  <!-- Data configuration -->
+
+  <db:provider id="TargetDbProvider" provider="SqlServer-2.0" connectionString="${connection.string}"/>
+
+  <object id="ObtenerConexion" type="Baz.Caja.Commons.Support.CjCRObtenerRegistro, Baz.Caja.Commons" autowire="byType">
+    <property name="OpenSubKey" value="${application.adn.route}"/>
+    <property name="Value" value="${application.adn.parameter}"/>
+  </object>
+  
+  <object id="DbProviderConfigurer" type="Baz.Caja.Turnador.Support.CjCRDbProviderConfigurer, Baz.Caja.Turnador" autowire="byType">
+  </object>
+  
+  <object id="SqlDbProvider" type="Spring.Data.Common.UserCredentialsDbProvider, Spring.Data">
+    <property name="TargetDbProvider" ref="TargetDbProvider"/>
+    <property name="Username" value="User ID=defaultName"/>
+    <property name="Password" value="Password=defaultPass"/>
+  </object>
+
+  <object id="SqlAdoTemplate" type="Spring.Data.Generic.AdoTemplate, Spring.Data">
+    <property name="DbProvider" ref="SqlDbProvider"/>
+  </object>
+  
+  <!-- Data configuration -->
+
+  
+  <!-- DAO -->
+
+  <object id="TurnosDao" type="Baz.Caja.Turnador.Dao.CjCRTurnosDao, Baz.Caja.Turnador" autowire="byName">
+    <property name="AdoTemplate" ref="SqlAdoTemplate"/>
+  </object>
+
+  <object id="PoolDao" type="Baz.Caja.Turnador.Dao.CjCRPoolDao, Baz.Caja.Turnador" autowire="byName">
+    <property name="AdoTemplate" ref="SqlAdoTemplate"/>
+  </object>
+  
+  <object id="NegocioDao" type="Baz.Caja.Turnador.Dao.CjCRNegocioDao, Baz.Caja.Turnador" autowire="byName">
+    <property name="AdoTemplate" ref="SqlAdoTemplate"/>
+  </object>
+
+  <object id="CajaConfigDao" type="Baz.Caja.Commons.Dao.CjCRCajaConfigDao, Baz.Caja.Commons" autowire="byName">
+    <property name="AdoTemplate" ref="SqlAdoTemplate"/>
+  </object>
+  
+  <!-- DAO -->
+  
+  
+  <!-- Mappers -->
+
+  <object id="TurnoMapper" type="Baz.Caja.Turnador.Dao.Mapper.CjCRTurnoMapper, Baz.Caja.Turnador" autowire="byType"/>
+
+  <object id="EmpleadoPoolMapper" type="Baz.Caja.Turnador.Dao.Mapper.CjCREmpleadoPoolMapper, Baz.Caja.Turnador" autowire="byType"/>
+  
+  <object id="UnidadNegocioMapper" type="Baz.Caja.Turnador.Dao.Mapper.CjCRUnidadNegocioMapper, Baz.Caja.Turnador" autowire="byType"/>
+
+  <object id="CajaConfigMapper" type="Baz.Caja.Commons.Dao.Mapper.CjCRCajaConfigMapper, Baz.Caja.Commons" autowire="byType"/>
+
+  <!-- Mappers -->
+  
+  
+  <!-- Statement builders -->
+
+  <object id="NegocioStatementBuilder" type="Baz.Caja.Turnador.Dao.Statement.CjCRNegocioStatementBuilder, Baz.Caja.Turnador" autowire="byType"/>
+  
+  <object id="CajaConfigStatementBuilder" type="Baz.Caja.Commons.Dao.Statement.CjCRCajaConfigStatementBuilder, Baz.Caja.Commons" autowire="byType"/>
+
+  <!-- Statement builders -->
+
+  
+  <!-- Configuration -->
+
+  <object type="Spring.Objects.Factory.Config.VariablePlaceholderConfigurer, Spring.Core">
+    <property name="VariableSources">
+      <list>
+        <object type="Spring.Objects.Factory.Config.PropertyFileVariableSource, Spring.Core">
+          <property name="Location" value="assembly://Baz.Caja.Turnador/Baz.Caja.Turnador.resource.properties/application.properties"/>
+        </object>
+        <object type="Spring.Objects.Factory.Config.PropertyFileVariableSource, Spring.Core">
+          <property name="Location" value="assembly://Baz.Caja.Turnador/Baz.Caja.Turnador.resource.properties/connection.properties"/>
+        </object>
+      </list>
+    </property>
+  </object>
+
+  <object id="DefaultCredential" type="Baz.Caja.Commons.Model.CjCRCredential, Baz.Caja.Commons">
+    <property name="User" expression="${application.production} ? '${production.user}' : '${development.user}'"/>
+    <property name="Password" expression="${application.production} ? '${production.password}' : '${development.password}'"/>
+  </object>
+
+  <!-- Configuration -->
+  
+</objects>

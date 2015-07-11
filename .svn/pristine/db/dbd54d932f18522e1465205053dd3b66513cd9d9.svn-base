@@ -1,0 +1,1521 @@
+---------------------------------------------------------------------------------
+--- Responsable: Esteban Jesus Caro Guzman
+--- Fecha:      Febrero 2014
+--- Descripcion: Creacion de la tabla TCCJCCTRORIGEN.
+---------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TCCJCCTRORIGEN','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TCCJCCTRORIGEN_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TCCJCCTRORIGEN_TEMP
+END
+    SELECT 
+	FIORIGENID,          
+    FCDESCRIPCION,        
+    FDFECHAINSERTA,       
+    FCUSERINSERTA,        
+    FDFECHAMODIF,         
+    FCUSERMODIF    
+		
+	INTO #TCCJCCTRORIGEN_TEMP
+	FROM dbo.TCCJCCTRORIGEN WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TCCJCCTRORIGEN '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTCCJCCTRORIGEN') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRTURNO DROP CONSTRAINT [XFKTCCJCCTRORIGEN]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRORIGEN '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+DROP TABLE dbo.TCCJCCTRORIGEN
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TCCJCCTRORIGEN '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES
+
+CREATE TABLE dbo.TCCJCCTRORIGEN
+( 
+    FIORIGENID           SMALLINT  NOT NULL ,
+    FCDESCRIPCION        CHAR(50)  NULL ,
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTCCJCCTRORIGEN PRIMARY KEY (FIORIGENID ASC)
+)
+
+IF OBJECT_ID('tempdb..#TCCJCCTRORIGEN_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TCCJCCTRORIGEN(FIORIGENID, FCDESCRIPCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FIORIGENID, FCDESCRIPCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TCCJCCTRORIGEN_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TCCJCCTRORIGEN '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TCCJCCTRORIGEN_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+	IF @@TRANCOUNT > 0
+			ROLLBACK TRAN ES
+	
+		RAISERROR (@vcMensaje, 18 , 1 )
+		RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TCCJCCTRORIGEN'
+GO
+
+
+---------------------------------------------------------------------------------
+--- Responsable: Esteban Jesus Caro Guzman
+--- Fecha:      Febrero 2014
+--- Descripcion: Creacion de la tabla TCCJCCTRESTADOPOOL.
+---------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TCCJCCTRESTADOPOOL','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TCCJCCTRESTADOPOOL_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TCCJCCTRESTADOPOOL_TEMP
+END
+    SELECT 
+	FISTATUSPOOLID,       
+    FCDESCRIPCION,        
+    FDFECHAINSERTA,       
+    FCUSERINSERTA,        
+    FDFECHAMODIF,         
+    FCUSERMODIF           
+		
+	INTO #TCCJCCTRESTADOPOOL_TEMP
+	FROM dbo.TCCJCCTRESTADOPOOL WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TCCJCCTRESTADOPOOL '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTCCJCCTRESTADOPOOL') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRPOOLATENCION DROP CONSTRAINT [XFKTCCJCCTRESTADOPOOL]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRESTADOPOOL '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+DROP TABLE dbo.TCCJCCTRESTADOPOOL
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TCCJCCTRESTADOPOOL '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES
+
+CREATE TABLE dbo.TCCJCCTRESTADOPOOL
+( 
+    FISTATUSPOOLID       SMALLINT  NOT NULL ,
+    FCDESCRIPCION        CHAR(50)  NULL ,
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTCCJCCTRESTADOPOOL PRIMARY KEY (FISTATUSPOOLID ASC)
+)
+
+IF OBJECT_ID('tempdb..#TCCJCCTRESTADOPOOL_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TCCJCCTRESTADOPOOL(FISTATUSPOOLID, FCDESCRIPCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FISTATUSPOOLID, FCDESCRIPCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TCCJCCTRESTADOPOOL_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TCCJCCTRESTADOPOOL '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TCCJCCTRESTADOPOOL_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+	IF @@TRANCOUNT > 0
+     	ROLLBACK TRAN ES
+		RAISERROR (@vcMensaje, 18 , 1 )
+		RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TCCJCCTRESTADOPOOL'
+GO
+
+-------------------------------------------------------------------------------
+-- Responsable: Esteban Jesus Caro Guzman
+-- Fecha:      Febrero 2014
+-- Descripcion: Creacion de la tabla TACJCCTRPOOLATENCION.
+-------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TACJCCTRPOOLATENCION','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TACJCCTRPOOLATENCION_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TACJCCTRPOOLATENCION_TEMP
+END
+    SELECT 
+	FCEMPNOID,            
+    FCRUTAIMAGEN,         
+    FISTATUSPOOLID,
+    FCPUNTOATENCION,       
+    FDFECHAINSERTA,       
+    FCUSERINSERTA,        
+    FDFECHAMODIF,         
+    FCUSERMODIF                   
+		
+	INTO #TACJCCTRPOOLATENCION_TEMP
+	FROM dbo.TACJCCTRPOOLATENCION WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TACJCCTRPOOLATENCION '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTACJCCTRPOOLATENCION1') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRTURNO DROP CONSTRAINT [XFKTACJCCTRPOOLATENCION1]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTACJCCTRPOOLATENCION1 '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	IF  Object_ID('XFKTACJCCTRPOOLATENCION2') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRCUALIDADPOOL DROP CONSTRAINT [XFKTACJCCTRPOOLATENCION2]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTACJCCTRPOOLATENCION2 '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	
+	IF  Object_ID('XFKTCCJCCTRESTADOPOOL') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRPOOLATENCION DROP CONSTRAINT [XFKTCCJCCTRESTADOPOOL]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRESTADOPOOL '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+DROP TABLE dbo.TACJCCTRPOOLATENCION
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TACJCCTRPOOLATENCION '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES
+
+CREATE TABLE dbo.TACJCCTRPOOLATENCION
+( 
+    FCEMPNOID            CHAR(10)  NOT NULL ,
+    FCRUTAIMAGEN         CHAR(250)  NULL ,
+    FISTATUSPOOLID       SMALLINT  NOT NULL ,
+    FCPUNTOATENCION      VARCHAR(50) NULL,
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTACJCCTRPOOLATENCION PRIMARY KEY (FCEMPNOID ASC),
+    CONSTRAINT XFKTCCJCCTRESTADOPOOL FOREIGN KEY (FISTATUSPOOLID) REFERENCES dbo.TCCJCCTRESTADOPOOL(FISTATUSPOOLID)
+)
+
+IF NOT EXISTS (select ID from sysindexes WITH(NOLOCK) where ID = object_id('dbo.TACJCCTRPOOLATENCION') AND name='XIF1TACJCCTRPOOLATENCION')
+	BEGIN			
+		CREATE INDEX XIF1TACJCCTRPOOLATENCION ON dbo.TACJCCTRPOOLATENCION (FISTATUSPOOLID ASC) 
+		IF @@ERROR<>0 
+		BEGIN
+			SET @vcMensaje = 'Error al Crear indices en tabla TACJCCTRPOOLATENCION '
+			GOTO CtrlErrores
+		END
+	END
+
+
+IF OBJECT_ID('tempdb..#TACJCCTRPOOLATENCION_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TACJCCTRPOOLATENCION(FCEMPNOID, FCRUTAIMAGEN, FISTATUSPOOLID, FCPUNTOATENCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FCEMPNOID, FCRUTAIMAGEN, FISTATUSPOOLID, FCPUNTOATENCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TACJCCTRPOOLATENCION_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TACJCCTRPOOLATENCION '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TACJCCTRPOOLATENCION_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+	IF @@TRANCOUNT > 0
+			ROLLBACK TRAN ES
+		RAISERROR (@vcMensaje, 18 , 1 )
+		RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TACJCCTRPOOLATENCION'
+GO
+
+-------------------------------------------------------------------------------
+-- Responsable: Esteban Jesus Caro Guzman
+-- Fecha:      Febrero 2014
+-- Descripcion: Creacion de la tabla TCCJCCTRUNIDADNEGOCIO.
+-------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TCCJCCTRUNIDADNEGOCIO','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TCCJCCTRUNIDADNEGOCIO_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TCCJCCTRUNIDADNEGOCIO_TEMP
+END
+    SELECT 
+	FIUNIDADNEGOCIOID,
+	FCDESCRIPCION,
+	FCRUTAIMAGEN,
+	FISTATUSUNDNEG,
+    FLPRESTAMOS,
+    FCCOLOR,
+    FCZONA,
+    FCPREFIJO,
+    FDFECHAINSERTA,
+    FCUSERINSERTA,
+    FDFECHAMODIF,
+    FCUSERMODIF               
+		
+	INTO #TCCJCCTRUNIDADNEGOCIO_TEMP
+	FROM dbo.TCCJCCTRUNIDADNEGOCIO WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TCCJCCTRUNIDADNEGOCIO '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTCCJCCTRUNIDADNEGOCIO') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TCCJCCTRFILA DROP CONSTRAINT [XFKTCCJCCTRUNIDADNEGOCIO]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRUNIDADNEGOCIO '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+DROP TABLE dbo.TCCJCCTRUNIDADNEGOCIO
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TCCJCCTRUNIDADNEGOCIO '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES
+
+CREATE TABLE dbo.TCCJCCTRUNIDADNEGOCIO
+( 
+    FIUNIDADNEGOCIOID    SMALLINT  NOT NULL ,
+    FCDESCRIPCION        CHAR(50)  NULL ,
+    FCRUTAIMAGEN         CHAR(250)  NULL ,
+    FISTATUSUNDNEG       SMALLINT  NULL ,
+    FLPRESTAMOS          BIT  NULL ,
+    FCCOLOR              VARCHAR(30),
+    FCZONA               VARCHAR(30),
+    FCPREFIJO            CHAR(5),
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTCCJCCTRUNIDADNEGOCIO PRIMARY KEY (FIUNIDADNEGOCIOID ASC)
+)
+
+IF OBJECT_ID('tempdb..#TCCJCCTRUNIDADNEGOCIO_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TCCJCCTRUNIDADNEGOCIO(FIUNIDADNEGOCIOID, FCDESCRIPCION, FCRUTAIMAGEN, FISTATUSUNDNEG, FLPRESTAMOS, FCCOLOR, FCZONA, FCPREFIJO, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FIUNIDADNEGOCIOID, FCDESCRIPCION, FCRUTAIMAGEN, FISTATUSUNDNEG, FLPRESTAMOS, FCCOLOR, FCZONA, FCPREFIJO, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TCCJCCTRUNIDADNEGOCIO_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TACJCCTRPOOLATENCION '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TCCJCCTRUNIDADNEGOCIO_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		IF @@TRANCOUNT > 0
+		  ROLLBACK TRAN ES
+          RAISERROR (@vcMensaje, 18 , 1 )
+		  RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TCCJCCTRUNIDADNEGOCIO'
+GO
+
+-------------------------------------------------------------------------------
+-- Responsable: Esteban Jesus Caro Guzman
+-- Fecha:      Febrero 2014
+-- Descripcion: Creacion de la tabla TCCJCCTRTIPOFILA.
+-------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TCCJCCTRTIPOFILA','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TCCJCCTRTIPOFILA_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TCCJCCTRTIPOFILA_TEMP
+END
+    SELECT 
+	FITIPOFILAID,
+	FCDESCRIPCION,
+	FDFECHAINSERTA,
+	FCUSERINSERTA,
+	FDFECHAMODIF,
+	FCUSERMODIF         
+		
+	INTO #TCCJCCTRTIPOFILA_TEMP
+	FROM dbo.TCCJCCTRTIPOFILA WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TCCJCCTRTIPOFILA '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTCCJCCTRTIPOFILA') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TCCJCCTRFILA DROP CONSTRAINT [XFKTCCJCCTRTIPOFILA]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRTIPOFILA '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+DROP TABLE dbo.TCCJCCTRTIPOFILA
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TCCJCCTRTIPOFILA '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES
+
+CREATE TABLE dbo.TCCJCCTRTIPOFILA
+( 
+    FITIPOFILAID         SMALLINT  NOT NULL ,
+    FCDESCRIPCION        CHAR(50)  NULL ,
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTCCJCCTRTIPOFILA PRIMARY KEY (FITIPOFILAID ASC)
+)
+
+IF OBJECT_ID('tempdb..#TCCJCCTRTIPOFILA_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TCCJCCTRTIPOFILA(FITIPOFILAID, FCDESCRIPCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FITIPOFILAID, FCDESCRIPCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TCCJCCTRTIPOFILA_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TCCJCCTRTIPOFILA '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TCCJCCTRTIPOFILA_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+	IF @@TRANCOUNT > 0
+			ROLLBACK TRAN ES
+		RAISERROR (@vcMensaje, 18 , 1 )
+		RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TCCJCCTRTIPOFILA'
+GO
+
+-------------------------------------------------------------------------------
+-- Responsable: Esteban Jesus Caro Guzman
+-- Fecha:      Febrero 2014
+-- Descripcion: Creacion de la tabla TCCJCCTRFILA.
+-------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TCCJCCTRFILA','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TCCJCCTRFILA_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TCCJCCTRFILA_TEMP
+END
+    SELECT 
+	FIFILAID,
+	FIUNIDADNEGOCIOID,
+	FISTATUSFILA,
+	FITIPOFILAID,
+	FDFECHAINSERTA,
+	FCUSERINSERTA,
+	FDFECHAMODIF,
+	FCUSERMODIF    
+		
+	INTO #TCCJCCTRFILA_TEMP
+	FROM dbo.TCCJCCTRFILA WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TCCJCCTRFILA '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTCCJCCTRFILA') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRTURNO DROP CONSTRAINT [XFKTCCJCCTRFILA]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRFILA '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	IF  Object_ID('XFKTCCJCCTRUNIDADNEGOCIO') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TCCJCCTRFILA DROP CONSTRAINT [XFKTCCJCCTRUNIDADNEGOCIO]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRUNIDADNEGOCIO '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	IF  Object_ID('XFKTCCJCCTRTIPOFILA') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TCCJCCTRFILA DROP CONSTRAINT [XFKTCCJCCTRTIPOFILA]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRTIPOFILA '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+DROP TABLE dbo.TCCJCCTRFILA
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TCCJCCTRFILA '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES
+
+CREATE TABLE dbo.TCCJCCTRFILA
+( 
+    FIFILAID             SMALLINT  NOT NULL ,
+    FIUNIDADNEGOCIOID    SMALLINT  NOT NULL ,
+    FISTATUSFILA         SMALLINT  NULL ,
+    FITIPOFILAID         SMALLINT  NOT NULL ,
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTCCJCCTRFILA PRIMARY KEY (FIFILAID ASC,FIUNIDADNEGOCIOID ASC),
+    CONSTRAINT XFKTCCJCCTRUNIDADNEGOCIO FOREIGN KEY (FIUNIDADNEGOCIOID) REFERENCES TCCJCCTRUNIDADNEGOCIO(FIUNIDADNEGOCIOID),
+CONSTRAINT XFKTCCJCCTRTIPOFILA FOREIGN KEY (FITIPOFILAID) REFERENCES TCCJCCTRTIPOFILA(FITIPOFILAID)
+)
+
+IF NOT EXISTS (select ID from sysindexes WITH(NOLOCK) where ID = object_id('dbo.TCCJCCTRFILA') AND name='XIF1TCCJCCTRFILA')
+	BEGIN			
+		CREATE INDEX XIF1TCCJCCTRFILA ON dbo.TCCJCCTRFILA (FIUNIDADNEGOCIOID ASC) 
+		IF @@ERROR<>0 
+		BEGIN
+			SET @vcMensaje = 'Error al Crear indices en tabla TCCJCCTRFILA '
+			GOTO CtrlErrores
+		END
+	END
+
+IF NOT EXISTS (select ID from sysindexes WITH(NOLOCK) where ID = object_id('dbo.TCCJCCTRFILA') AND name='XIF2TCCJCCTRFILA')
+	BEGIN			
+		CREATE INDEX XIF2TCCJCCTRFILA ON dbo.TCCJCCTRFILA (FITIPOFILAID ASC) 
+		IF @@ERROR<>0 
+		BEGIN
+			SET @vcMensaje = 'Error al Crear indices en tabla TCCJCCTRFILA '
+			GOTO CtrlErrores
+		END
+	END
+
+IF OBJECT_ID('tempdb..#TCCJCCTRFILA_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TCCJCCTRFILA(FIFILAID, FIUNIDADNEGOCIOID, FISTATUSFILA, FITIPOFILAID, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FIFILAID, FIUNIDADNEGOCIOID, FISTATUSFILA, FITIPOFILAID, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TCCJCCTRFILA_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TCCJCCTRFILA '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TCCJCCTRFILA_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		IF @@TRANCOUNT > 0
+			ROLLBACK TRAN ES
+		RAISERROR (@vcMensaje, 18 , 1 )
+		RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TCCJCCTRFILA'
+GO
+
+-------------------------------------------------------------------------------
+-- Responsable: Esteban Jesus Caro Guzman
+-- Fecha:      Febrero 2014
+-- Descripcion: Creacion de la tabla TACJCCTRTURNO.
+-------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TACJCCTRTURNO','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TACJCCTRTURNO_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TACJCCTRTURNO_TEMP
+END
+    SELECT 
+	FIFECHA,
+	FITURNOID,
+	FIORIGENID,
+	FCEMPNOID,
+	FIFILAID,
+	FIUNIDADNEGOCIOID,
+	FITURNOSEGUIMIENTO,
+	FIPRIORIDAD,
+	FISTATUSTURNO,
+	FIVIRTUAL,
+	FDFECHAINSERTA,
+	FCUSERINSERTA,
+	FDFECHAMODIF,
+	FCUSERMODIF
+			
+	INTO #TACJCCTRTURNO_TEMP
+	FROM dbo.TACJCCTRTURNO WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TACJCCTRTURNO '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTACJCCTRTURNO1') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRDETALLE DROP CONSTRAINT [XFKTACJCCTRTURNO1]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTACJCCTRTURNO1 '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	IF  Object_ID('XFKTACJCCTRTURNO2') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRHISTORICO DROP CONSTRAINT [XFKTACJCCTRTURNO2]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTACJCCTRTURNO2 '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	IF  Object_ID('XFKTCCJCCTRORIGEN') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRTURNO DROP CONSTRAINT [XFKTCCJCCTRORIGEN]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRORIGEN '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	IF  Object_ID('XFKTACJCCTRPOOLATENCION1') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRTURNO DROP CONSTRAINT [XFKTACJCCTRPOOLATENCION1]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTACJCCTRPOOLATENCION1 '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	IF  Object_ID('XFKTCCJCCTRFILA') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRTURNO DROP CONSTRAINT [XFKTCCJCCTRFILA]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRFILA '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+DROP TABLE dbo.TACJCCTRTURNO
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TACJCCTRTURNO '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES
+
+CREATE TABLE dbo.TACJCCTRTURNO
+( 
+    FIFECHA              INTEGER  NOT NULL ,
+    FITURNOID            INTEGER  NOT NULL ,
+    FIORIGENID           SMALLINT  NOT NULL ,
+    FCEMPNOID            CHAR(10)  NULL ,
+    FIFILAID             SMALLINT  NOT NULL ,
+    FIUNIDADNEGOCIOID    SMALLINT  NOT NULL ,
+    FITURNOSEGUIMIENTO   INTEGER  NULL ,
+    FIPRIORIDAD          SMALLINT  NULL ,
+	FISTATUSTURNO        SMALLINT  NULL ,
+	FIVIRTUAL            SMALLINT  NULL ,
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTACJCCTRTURNO PRIMARY KEY (FIFECHA ASC,FITURNOID ASC, FIUNIDADNEGOCIOID ASC),
+    CONSTRAINT XFKTCCJCCTRORIGEN FOREIGN KEY (FIORIGENID) REFERENCES TCCJCCTRORIGEN(FIORIGENID),
+CONSTRAINT XFKTACJCCTRPOOLATENCION1 FOREIGN KEY (FCEMPNOID) REFERENCES TACJCCTRPOOLATENCION(FCEMPNOID),
+CONSTRAINT XFKTCCJCCTRFILA FOREIGN KEY (FIFILAID,FIUNIDADNEGOCIOID) REFERENCES TCCJCCTRFILA(FIFILAID,FIUNIDADNEGOCIOID),
+CONSTRAINT XCK001TACJCCTRTURNO CHECK(FIVIRTUAL IN (0,1))
+)
+
+IF NOT EXISTS (select ID from sysindexes WITH(NOLOCK) where ID = object_id('dbo.TACJCCTRTURNO') AND name='XIF1TACJCCTRTURNO')
+	BEGIN			
+		CREATE INDEX XIF1TACJCCTRTURNO ON dbo.TACJCCTRTURNO (FIORIGENID ASC) 
+		IF @@ERROR<>0 
+		BEGIN
+			SET @vcMensaje = 'Error al Crear indices en tabla TACJCCTRTURNO '
+			GOTO CtrlErrores
+		END
+	END
+
+IF NOT EXISTS (select ID from sysindexes WITH(NOLOCK) where ID = object_id('dbo.TACJCCTRTURNO') AND name='XIF2TACJCCTRTURNO')
+	BEGIN			
+		CREATE INDEX XIF2TACJCCTRTURNO ON dbo.TACJCCTRTURNO (FCEMPNOID ASC) 
+		IF @@ERROR<>0 
+		BEGIN
+			SET @vcMensaje = 'Error al Crear indices en tabla TACJCCTRTURNO '
+			GOTO CtrlErrores
+		END
+	END
+	
+	IF NOT EXISTS (select ID from sysindexes WITH(NOLOCK) where ID = object_id('dbo.TACJCCTRTURNO') AND name='XIF3TACJCCTRTURNO')
+	BEGIN			
+		CREATE INDEX XIF3TACJCCTRTURNO ON dbo.TACJCCTRTURNO (FIFILAID ASC, FIUNIDADNEGOCIOID ASC) 
+		IF @@ERROR<>0 
+		BEGIN
+			SET @vcMensaje = 'Error al Crear indices en tabla TACJCCTRTURNO '
+			GOTO CtrlErrores
+		END
+	END
+
+IF OBJECT_ID('tempdb..#TACJCCTRTURNO_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TACJCCTRTURNO(FIFECHA, FITURNOID, FIORIGENID, FCEMPNOID, FIFILAID, FIUNIDADNEGOCIOID, FITURNOSEGUIMIENTO, FIPRIORIDAD, FISTATUSTURNO, FIVIRTUAL, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FIFECHA, FITURNOID, FIORIGENID, FCEMPNOID, FIFILAID, FIUNIDADNEGOCIOID, FITURNOSEGUIMIENTO, FIPRIORIDAD, FISTATUSTURNO, FIVIRTUAL, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TACJCCTRTURNO_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TACJCCTRTURNO '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TACJCCTRTURNO_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		IF @@TRANCOUNT > 0
+			ROLLBACK TRAN ES
+		RAISERROR (@vcMensaje, 18 , 1 )
+		RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TACJCCTRTURNO'
+GO
+
+-------------------------------------------------------------------------------
+-- Responsable: Esteban Jesus Caro Guzman
+-- Fecha:      Febrero 2014
+-- Descripcion: Creacion de la tabla TACJCCTRDETALLE.
+-------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TACJCCTRDETALLE','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TACJCCTRDETALLE_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TACJCCTRDETALLE_TEMP
+END
+    SELECT 
+	FIFECHA,
+	FITURNOID,
+	FIUNIDADNEGOCIOID,
+	FITRANSACCION,
+	FITOP,
+	FICONCEPTO,
+	FNIMPORTE,
+	FIIDTIPODIV,
+	FDINICIO,
+	FDFIN,
+	FDFECHAINSERTA,
+	FCUSERINSERTA,
+	FDFECHAMODIF,
+	FCUSERMODIF
+				
+	INTO #TACJCCTRDETALLE_TEMP
+	FROM dbo.TACJCCTRDETALLE WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TACJCCTRDETALLE '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTACJCCTRTURNO1') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRDETALLE DROP CONSTRAINT [XFKTACJCCTRTURNO1]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTACJCCTRTURNO1 '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	DROP TABLE dbo.TACJCCTRDETALLE
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TACJCCTRDETALLE '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES
+
+CREATE TABLE dbo.TACJCCTRDETALLE
+( 
+    FIFECHA              INTEGER  NOT NULL ,
+    FITURNOID            INTEGER  NOT NULL ,
+    FIUNIDADNEGOCIOID    SMALLINT  NOT NULL ,
+    FITRANSACCION        SMALLINT  NULL ,
+    FITOP                SMALLINT  NULL ,
+    FICONCEPTO           SMALLINT  NULL ,
+    FNIMPORTE            DECIMAL(12,2)  NULL ,
+    FIIDTIPODIV          SMALLINT  NULL ,
+    FDINICIO             DATETIME  NULL ,
+    FDFIN                DATETIME  NULL ,
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTACJCCTRDETALLE PRIMARY KEY (FIFECHA ASC,FITURNOID ASC, FIUNIDADNEGOCIOID ASC),
+    CONSTRAINT XFKTACJCCTRTURNO1 FOREIGN KEY (FIFECHA,FITURNOID,FIUNIDADNEGOCIOID) REFERENCES TACJCCTRTURNO(FIFECHA,FITURNOID,FIUNIDADNEGOCIOID)
+)
+
+IF NOT EXISTS (select ID from sysindexes WITH(NOLOCK) where ID = object_id('dbo.TACJCCTRDETALLE') AND name='XIF1TACJCCTRDETALLE')
+	BEGIN			
+		CREATE UNIQUE INDEX XIF1TACJCCTRDETALLE ON dbo.TACJCCTRDETALLE (FIFECHA ASC, FITURNOID ASC, FIUNIDADNEGOCIOID ASC) 
+		IF @@ERROR<>0 
+		BEGIN
+			SET @vcMensaje = 'Error al Crear indices en tabla TACJCCTRDETALLE '
+			GOTO CtrlErrores
+		END
+	END
+
+IF OBJECT_ID('tempdb..#TACJCCTRDETALLE_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TACJCCTRDETALLE(FIFECHA, FITURNOID, FIUNIDADNEGOCIOID, FITRANSACCION, FITOP, FICONCEPTO, FNIMPORTE, FIIDTIPODIV, FDINICIO, FDFIN, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FIFECHA, FITURNOID, FIUNIDADNEGOCIOID, FITRANSACCION, FITOP, FICONCEPTO, FNIMPORTE, FIIDTIPODIV, FDINICIO, FDFIN, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TACJCCTRDETALLE_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TACJCCTRDETALLE '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TACJCCTRDETALLE_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		IF @@TRANCOUNT > 0
+			ROLLBACK TRAN ES
+		RAISERROR (@vcMensaje, 18 , 1 )
+		RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TACJCCTRDETALLE'
+GO
+
+-------------------------------------------------------------------------------
+-- Responsable: Esteban Jesus Caro Guzman
+-- Fecha:      Febrero 2014
+-- Descripcion: Creacion de la tabla TCCJCCTRCUALIDADES.
+-------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TCCJCCTRCUALIDADES','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TCCJCCTRCUALIDADES_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TCCJCCTRCUALIDADES_TEMP
+END
+    SELECT 
+	FICUALIDADID,
+	FCDESCRIPCION,
+	FDFECHAINSERTA,
+	FCUSERINSERTA,
+	FDFECHAMODIF,
+	FCUSERMODIF
+					
+	INTO #TCCJCCTRCUALIDADES_TEMP
+	FROM dbo.TCCJCCTRCUALIDADES WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TCCJCCTRCUALIDADES '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTCCJCCTRCUALIDADES') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRCUALIDADPOOL DROP CONSTRAINT [XFKTCCJCCTRCUALIDADES]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRCUALIDADES '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	DROP TABLE dbo.TCCJCCTRCUALIDADES
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TCCJCCTRCUALIDADES '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES
+
+CREATE TABLE dbo.TCCJCCTRCUALIDADES
+( 
+    FICUALIDADID         SMALLINT  NOT NULL ,
+    FCDESCRIPCION        CHAR(50)  NULL ,
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTCCJCCTRCUALIDADES PRIMARY KEY (FICUALIDADID ASC)
+)
+
+IF OBJECT_ID('tempdb..#TCCJCCTRCUALIDADES_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TCCJCCTRCUALIDADES(FICUALIDADID, FCDESCRIPCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FICUALIDADID, FCDESCRIPCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TCCJCCTRCUALIDADES_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TCCJCCTRCUALIDADES '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TCCJCCTRCUALIDADES_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		IF @@TRANCOUNT > 0
+			ROLLBACK TRAN ES
+		RAISERROR (@vcMensaje, 18 , 1 )
+		RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TCCJCCTRCUALIDADES'
+GO
+
+-------------------------------------------------------------------------------
+-- Responsable: Esteban Jesus Caro Guzman
+-- Fecha:      Febrero 2014
+-- Descripcion: Creacion de la tabla TACJCCTRCUALIDADPOOL.
+-------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TACJCCTRCUALIDADPOOL','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TACJCCTRCUALIDADPOOL_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TACJCCTRCUALIDADPOOL_TEMP
+END
+    SELECT 
+	FCEMPNOID,
+	FICUALIDADID,
+	FCVALOR,
+	FDFECHAINSERTA,
+	FCUSERINSERTA,
+	FDFECHAMODIF,
+	FCUSERMODIF
+					
+	INTO #TACJCCTRCUALIDADPOOL_TEMP
+	FROM dbo.TACJCCTRCUALIDADPOOL WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TACJCCTRCUALIDADPOOL '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTACJCCTRPOOLATENCION2') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRCUALIDADPOOL DROP CONSTRAINT [XFKTACJCCTRPOOLATENCION2]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTACJCCTRPOOLATENCION2 '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	IF  Object_ID('XFKTCCJCCTRCUALIDADES') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRCUALIDADPOOL DROP CONSTRAINT [XFKTCCJCCTRCUALIDADES]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRCUALIDADES '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	DROP TABLE dbo.TACJCCTRCUALIDADPOOL
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TACJCCTRCUALIDADPOOL '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES 
+
+   CREATE TABLE dbo.TACJCCTRCUALIDADPOOL
+( 
+    FCEMPNOID            CHAR(10)  NOT NULL ,
+    FICUALIDADID         SMALLINT  NOT NULL ,
+    FCVALOR              CHAR(50)  NULL ,
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTACJCCTRCUALIDADPOOL PRIMARY KEY (FCEMPNOID ASC,FICUALIDADID ASC),
+    CONSTRAINT XFKTACJCCTRPOOLATENCION2 FOREIGN KEY (FCEMPNOID) REFERENCES TACJCCTRPOOLATENCION(FCEMPNOID),
+CONSTRAINT XFKTCCJCCTRCUALIDADES FOREIGN KEY (FICUALIDADID) REFERENCES TCCJCCTRCUALIDADES(FICUALIDADID)
+)
+
+IF NOT EXISTS (select ID from sysindexes WITH(NOLOCK) where ID = object_id('dbo.TACJCCTRCUALIDADPOOL') AND name='XIF1TACJCCTRCUALIDADPOOL')
+	BEGIN			
+		CREATE INDEX XIF1TACJCCTRCUALIDADPOOL ON dbo.TACJCCTRCUALIDADPOOL (FCEMPNOID ASC) 
+		IF @@ERROR<>0 
+		BEGIN
+			SET @vcMensaje = 'Error al Crear indices en tabla TACJCCTRCUALIDADPOOL '
+			GOTO CtrlErrores
+		END
+	END
+
+IF NOT EXISTS (select ID from sysindexes WITH(NOLOCK) where ID = object_id('dbo.TACJCCTRCUALIDADPOOL') AND name='XIF2TACJCCTRCUALIDADPOOL')
+	BEGIN			
+		CREATE INDEX XIF2TACJCCTRCUALIDADPOOL ON dbo.TACJCCTRCUALIDADPOOL (FICUALIDADID ASC) 
+		IF @@ERROR<>0 
+		BEGIN
+			SET @vcMensaje = 'Error al Crear indices en tabla TACJCCTRCUALIDADPOOL '
+			GOTO CtrlErrores
+		END
+	END
+
+IF OBJECT_ID('tempdb..#TACJCCTRCUALIDADPOOL_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TACJCCTRCUALIDADPOOL(FCEMPNOID, FICUALIDADID, FCVALOR, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FCEMPNOID, FICUALIDADID, FCVALOR, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TACJCCTRCUALIDADPOOL_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TACJCCTRCUALIDADPOOL '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TACJCCTRCUALIDADPOOL_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		IF @@TRANCOUNT > 0
+			ROLLBACK TRAN ES
+		RAISERROR (@vcMensaje, 18 , 1 )
+		RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TACJCCTRCUALIDADPOOL'
+GO
+
+-------------------------------------------------------------------------------
+-- Responsable: Esteban Jesus Caro Guzman
+-- Fecha:      Febrero 2014
+-- Descripcion: Creacion de la tabla TCCJCCTRESTADOTURNO.
+-------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TCCJCCTRESTADOTURNO','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TCCJCCTRESTADOTURNO_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TCCJCCTRESTADOTURNO_TEMP
+END
+    SELECT 
+	FISTATUSTURNOID,
+	FCDESCRIPCION,
+	FDFECHAINSERTA,
+	FCUSERINSERTA,
+	FDFECHAMODIF,
+	FCUSERMODIF
+						
+	INTO #TCCJCCTRESTADOTURNO_TEMP
+	FROM dbo.TCCJCCTRESTADOTURNO WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TCCJCCTRESTADOTURNO '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTCCJCCTRESTADOTURNO') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRHISTORICO DROP CONSTRAINT [XFKTCCJCCTRESTADOTURNO]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRESTADOTURNO '
+			GOTO CtrlErrores
+		END		
+	END		
+		
+	DROP TABLE dbo.TCCJCCTRESTADOTURNO
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TCCJCCTRESTADOTURNO '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES
+
+   CREATE TABLE dbo.TCCJCCTRESTADOTURNO
+( 
+    FISTATUSTURNOID      SMALLINT  NOT NULL ,
+    FCDESCRIPCION        CHAR(50)  NULL ,
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTCCJCCTRESTADOTURNO PRIMARY KEY (FISTATUSTURNOID ASC)
+)
+
+IF OBJECT_ID('tempdb..#TCCJCCTRESTADOTURNO_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TCCJCCTRESTADOTURNO(FISTATUSTURNOID, FCDESCRIPCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FISTATUSTURNOID, FCDESCRIPCION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TCCJCCTRESTADOTURNO_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TCCJCCTRESTADOTURNO '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TCCJCCTRESTADOTURNO_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		IF @@TRANCOUNT > 0
+			ROLLBACK TRAN ES
+		RAISERROR (@vcMensaje, 18 , 1 )
+		RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TCCJCCTRESTADOTURNO'
+GO
+
+-------------------------------------------------------------------------------
+-- Responsable: Esteban Jesus Caro Guzman
+-- Fecha:      Febrero 2014
+-- Descripcion: Creacion de la tabla TACJCCTRHISTORICO.
+-------------------------------------------------------------------------------
+SET NOCOUNT ON
+DECLARE	@vcMensaje	VARCHAR(255) 
+
+IF OBJECT_ID(N'dbo.TACJCCTRHISTORICO','U') IS NOT NULL
+BEGIN
+
+IF OBJECT_ID('tempdb..#TACJCCTRHISTORICO_TEMP') IS NOT NULL
+BEGIN
+DROP TABLE #TACJCCTRHISTORICO_TEMP
+END
+    SELECT 
+	FIFECHA,
+	FITURNOID,
+	FIUNIDADNEGOCIOID,
+	FISTATUSTURNOID,
+	FDACTUALIZACION,
+	FDFECHAINSERTA,
+	FCUSERINSERTA,
+	FDFECHAMODIF,
+	FCUSERMODIF
+					
+	INTO #TACJCCTRHISTORICO_TEMP
+	FROM dbo.TACJCCTRHISTORICO WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar respaldar la informacion de la tabla TACJCCTRHISTORICO '
+		GOTO CtrlErrores
+	END
+	
+	IF  Object_ID('XFKTACJCCTRTURNO2') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRHISTORICO DROP CONSTRAINT [XFKTACJCCTRTURNO2]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTACJCCTRTURNO2 '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	IF  Object_ID('XFKTCCJCCTRESTADOTURNO') IS NOT NULL	
+	BEGIN
+		ALTER TABLE dbo.TACJCCTRHISTORICO DROP CONSTRAINT [XFKTCCJCCTRESTADOTURNO]
+		IF @@ERROR <> 0
+		BEGIN
+			SET @vcMensaje = 'Error al eliminar la fk XFKTCCJCCTRESTADOTURNO '
+			GOTO CtrlErrores
+		END		
+	END		
+	
+	DROP TABLE dbo.TACJCCTRHISTORICO
+IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al eliminar la tabla TACJCCTRHISTORICO '
+		GOTO CtrlErrores
+	END
+END
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		RAISERROR (@vcMensaje, 18 , 1 )                
+		RETURN
+GO
+
+DECLARE	@vcMensaje	VARCHAR(255) 
+BEGIN TRAN ES
+
+CREATE TABLE dbo.TACJCCTRHISTORICO
+( 
+    FIFECHA              INTEGER  NOT NULL ,
+    FITURNOID            INTEGER  NOT NULL ,
+    FIUNIDADNEGOCIOID    SMALLINT  NOT NULL ,
+    FISTATUSTURNOID      SMALLINT  NOT NULL ,
+    FDACTUALIZACION      DATETIME  NULL ,
+    FDFECHAINSERTA       DATETIME  NULL ,
+    FCUSERINSERTA        CHAR(10)  NULL ,
+    FDFECHAMODIF         DATETIME  NULL ,
+    FCUSERMODIF          CHAR(10)  NULL ,
+    CONSTRAINT XPKTACJCCTRHISTORICO PRIMARY KEY (FIFECHA ASC,FITURNOID ASC,FISTATUSTURNOID ASC, FIUNIDADNEGOCIOID ASC),
+    CONSTRAINT XFKTACJCCTRTURNO2 FOREIGN KEY (FIFECHA,FITURNOID,FIUNIDADNEGOCIOID) REFERENCES TACJCCTRTURNO(FIFECHA,FITURNOID,FIUNIDADNEGOCIOID),
+CONSTRAINT XFKTCCJCCTRESTADOTURNO FOREIGN KEY (FISTATUSTURNOID) REFERENCES TCCJCCTRESTADOTURNO(FISTATUSTURNOID)
+)
+
+IF NOT EXISTS (select ID from sysindexes WITH(NOLOCK) where ID = object_id('dbo.TACJCCTRHISTORICO') AND name='XIF1TACJCCTRHISTORICO')
+	BEGIN			
+		CREATE INDEX XIF1TACJCCTRHISTORICO ON dbo.TACJCCTRHISTORICO (FITURNOID ASC, FIFECHA ASC, FIUNIDADNEGOCIOID ASC) 
+		IF @@ERROR<>0 
+		BEGIN
+			SET @vcMensaje = 'Error al Crear indices en tabla TACJCCTRHISTORICO '
+			GOTO CtrlErrores
+		END
+	END
+
+IF NOT EXISTS (select ID from sysindexes WITH(NOLOCK) where ID = object_id('dbo.TACJCCTRHISTORICO') AND name='XIF2TACJCCTRHISTORICO')
+	BEGIN			
+		CREATE INDEX XIF2TACJCCTRHISTORICO ON dbo.TACJCCTRHISTORICO (FISTATUSTURNOID ASC) 
+		IF @@ERROR<>0 
+		BEGIN
+			SET @vcMensaje = 'Error al Crear indices en tabla TACJCCTRHISTORICO '
+			GOTO CtrlErrores
+		END
+	END
+
+IF OBJECT_ID('tempdb..#TACJCCTRHISTORICO_TEMP') IS NOT NULL
+BEGIN
+
+	INSERT INTO dbo.TACJCCTRHISTORICO(FIFECHA, FITURNOID, FIUNIDADNEGOCIOID, FISTATUSTURNOID, FDACTUALIZACION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF)
+	SELECT FIFECHA, FITURNOID, FIUNIDADNEGOCIOID, FISTATUSTURNOID, FDACTUALIZACION, FDFECHAINSERTA, FCUSERINSERTA, FDFECHAMODIF, FCUSERMODIF
+	FROM #TACJCCTRHISTORICO_TEMP WITH(NOLOCK)
+	IF @@ERROR <> 0
+	BEGIN
+		SET @vcMensaje = 'Error al intentar recuperar la informacion respaldada de la tabla TACJCCTRHISTORICO '
+	    GOTO CtrlErrores
+	END	
+	
+	DROP TABLE #TACJCCTRHISTORICO_TEMP
+END
+COMMIT TRAN ES
+SET NOCOUNT OFF
+RETURN
+---------------------------------------------------------------------------------
+-- MANEJO DE ERRORES
+---------------------------------------------------------------------------------
+CtrlErrores:
+	SET NOCOUNT OFF
+		IF @@TRANCOUNT > 0
+			ROLLBACK TRAN ES
+		RAISERROR (@vcMensaje, 18 , 1 )
+		RETURN
+GO
+
+EXEC dbo.SPGRANT 'dbo.TACJCCTRHISTORICO'
+GO

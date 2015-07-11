@@ -1,0 +1,3 @@
+﻿
+var _OPERATION_COMPLETE = 0;
+var _OPERATION_FAIL = -1;

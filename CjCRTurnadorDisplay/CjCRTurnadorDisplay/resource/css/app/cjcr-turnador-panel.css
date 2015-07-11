@@ -1,0 +1,139 @@
+﻿html
+{
+    overflow: hidden;
+}
+    
+.superior{
+  position: absolute;
+  top:0%;
+  height:15%;
+  margin:0px auto;
+  background-color: #fff;
+}
+
+.superior.izquierdo{
+  left:0% ;
+  width:60%;
+}
+
+.superior.derecho{
+  left:60%;
+  width:40%;
+  text-align:center;
+}
+
+.centrarNegocio{
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.span7{
+   top:5%;
+}
+
+img.bandaRoja{
+  position: relative;
+  width: 100% !important;
+  max-height: 100% !important;
+}
+
+p.atendiendo{
+  position: absolute;
+  top:50%;
+  left:5%;
+  line-height: 0px;
+  font-weight: lighter;
+  font-size: 60px;
+  text-align:center;
+}
+
+.panel{
+  width:50%;
+  position: absolute;
+  height:100%;
+  top:15%;
+  vertical-align: middle;
+  margin-bottom: 0% !important;
+}
+.panel.izquierdo{
+  position:absolute;
+  top:15%;
+  height:85%;
+  width:50%;
+  left:0%;
+  background-color:White; 
+}
+.panel.derecho
+{
+  left:50%;
+  position:absolute;
+  right:50%;
+  height:85%;
+  width:50%;
+  display: table;
+  background-color: #999;
+}
+
+p{
+  font-family:'Arial';
+  color: White;
+  padding: 0px;
+  text-align:center;
+}
+
+p.turnoTitle{
+    font-size: 160px;
+    font-weight: bold;
+    line-height: 120px;
+    position: absolute;
+    top:30%;
+    left:20%;
+    margin:0px auto;
+}
+
+p.turnoNumber
+{
+    font-size: 160px;
+    font-weight: bold;
+    line-height: 120px;
+    position: absolute;
+    top:59%;
+    left:37%;
+    margin:0px auto;
+}
+
+#mensaje
+{
+    position:absolute;
+    top:0%;
+    text-align:center;
+    font-family:'Arial';
+}
+
+.mensajeDetail 
+{
+    font-size:60px;
+    line-height: 378%;
+}
+
+.datosDetail 
+{
+    font-size:160px;
+    font-weight:bolder;
+}
+
+
+@media (max-width: 1400px)
+{
+    .mensajeDetail
+    {
+        font-size:40px;
+        line-height: 150%;
+    }
+    .datosDetail 
+    {
+        font-size:60px !important;
+        font-weight:bolder;
+    }
+}

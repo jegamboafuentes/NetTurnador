@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+using Spring.Data.Common;
+using Spring.Objects.Factory.Config;
+
+using Baz.Caja.Commons.Support;
+using System.Web.Services;
+
+namespace Baz.Caja.Turnador.Support
+{
+    public class CjCRDbProviderConfigurer : IObjectPostProcessor
+    {
+        public CjCRObtenerRegistro ObtenerConexion { get; set; }
+        public String a = "";
+        public object PostProcessBeforeInitialization(object instance, string name)
+        {
+            return instance;
+        }
+
+
+        public object PostProcessAfterInitialization(object instance, string name)
+        {
+            IDbProvider dbProvider;
+
+            if(instance is IDbProvider) 
+            {
+                dbProvider = (IDbProvider) instance;
+                dbProvider.ConnectionString = String.Format(dbProvider.ConnectionString,
+                    ObtenerConexion.GetRegistro());
+            }
+
+            return instance;
+        }
+
+        
+    
+    }
+}
